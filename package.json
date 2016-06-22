@@ -1,0 +1,24 @@
+{
+  "name": "igorwebsite",
+  "version": "1.0.0",
+  "description": "The official website of Igor Nasibyan ",
+  "main": "index.js",
+  "scripts": {
+    "test": "\\"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodneywells01/IgorNasibyan.git"
+  },
+  "keywords": [
+    "igor",
+    "nasibyan",
+    "shadow"
+  ],
+  "author": "Rodney Wells",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodneywells01/IgorNasibyan/issues"
+  },
+  "homepage": "https://github.com/rodneywells01/IgorNasibyan#readme"
+}
