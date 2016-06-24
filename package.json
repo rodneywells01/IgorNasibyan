@@ -2,9 +2,25 @@
   "name": "igorwebsite",
   "version": "1.0.0",
   "description": "The official website of Igor Nasibyan ",
-  "main": "index.js",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-aria": "^1.5.7",
+    "angular-material": "^1.1.0-rc.5",
+    "express": "^4.14.0",
+    "mongodb": "^2.1.18"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "jshint": "^2.9.2"
+  },
   "scripts": {
-    "test": "\\"
+    "test": "echo \"Error: not test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

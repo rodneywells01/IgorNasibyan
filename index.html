@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Igor Nasibyan</title>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
+	<link rel="stylesheet" type="text/css" href="app/styles/mainstyle.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+	<!-- Sources -->
+	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-material/angular-material.js"></script>	
+	<script type="text/javascript" src="node_modules/angular-animate/angular-animate.js"></script>
+	<script type="text/javascript" src="node_modules/angular-aria/angular-aria.js"></script>
+
+	<!-- App -->
+	<script type="text/javascript" src="app/app.js"></script>
+
+	<!-- Controllers -->
+	<script type="text/javascript" src="app/controllers/MainController.js"></script>
+
+	<!-- Directives -->
+	<script type="text/javascript" src="app/directives/awardcard.js"></script>
+
+	<!-- Services -->
+	<!-- <script type="text/javascript" src="app/services"></script>	 -->
+	
+</head>
+<body ng-app="IgorNasibyan" ng-controller="MainController">
+<md-toolbar id="navbar">
+	<h1>Igor Nasibyan - The Silhouette Studio</h1>
+</md-toolbar>
+
+<div class="webcore" layout="column" flex>
+	<md-content id="piccollage" class="contentarea" layout="row" flex>
+		<div class="collagecol" layout="column" flex>
+			<div class="picblock smallpic" flex>Art Here</div>
+			<div class="picblock smallpic" flex>Art Here</div>
+		</div>
+
+		<div class="collagecol" layout="column" flex>
+			<div class="picblock largepic" flex>Art Here</div>
+		</div>
+		
+		<div class="collagecol" layout="column" flex>
+			<div class="picblock smallpic" flex>Art Here</div>
+			<div class="picblock smallpic" flex>Art Here</div>
+		</div>		
+
+		<div class="collagecol" layout="column" flex>
+			<div class="picblock largepic" flex>Art Here</div>
+		</div>
+
+	</md-content>
+	<md-content id="about" class="contentarea" flex>
+		<!-- <h2 class="md-headline">about</h2> -->
+		<div class="bodycontent">
+		<b>Igor Nasibyan</b> is a shadow artist from Erie, Pennsylvania, and creates beautiful shadow portraits done in mere minutes.
+		</div>
+		<md-button style="margin-top: 50px;" class="md-raised md-primary standard-button">Request a Piece</md-button>
+	</md-content>
+	<md-content id="video" class="contentarea" flex>
+		<h2 class="md-headline">Art in Action</h2>
+		<div class="bodycontent"> 
+			<!-- <video>
+				<source src="https://www.youtube.com/embed/B34u9EP5MwQ" type="mp4">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/B34u9EP5MwQ" frameborder="0" allowfullscreen></iframe>
+			</video> -->
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/B34u9EP5MwQ" frameborder="0" allowfullscreen></iframe>
+			<p>Art description here. This will be customizable.</p>
+		</div>
+	</md-content>
+	<md-content id="awards" class="contentarea" flex>
+		<h2 class="md-headline">awards</h2>
+		<div class="bodycontent">
+			<div layout="row" flex id="awardsdisplay">
+				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
+				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
+				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
+			</div>					
+		</div>
+	</md-content>
+	<md-content id="newspaper" class="contentarea" flex>
+		<h2 class="md-headline">newspaper</h2>
+		<div class="bodycontent">LoremIpsumBacon</div>
+	</md-content>
+	<md-content id="requestapiece" class="contentarea" flex>
+		<h2 class="md-headline">requestapiece</h2>
+		<div class="bodycontent">LoremIpsumBacon</div>
+	</md-content>
+	
+	<md-content id="contact" class="contentarea" flex>
+		<h2 class="md-headline">contact</h2>
+		<div class="bodycontent">LoremIpsumBacon</div>
+	</md-content>
+
+	<md-button id="mainfab" class="md-fab md-primary" aria-label="Contact Igor">
+        <md-icon md-svg-src="app/images/email.svg" style="color: greenyellow;"></md-icon>
+    </md-button>
+
+</body>
+
+<style type="text/css">
+	.lightblue {
+		background-color: lightblue;
+	}
+
+	.lightgreen {
+		background-color: lightgreen;
+	}
+</style>
+
+</html>

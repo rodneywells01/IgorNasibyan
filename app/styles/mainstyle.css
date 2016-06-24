@@ -1,0 +1,56 @@
+#navbar {
+	text-align: center;
+	background-color: #554b47;
+}
+
+#mainfab {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+}
+
+#awardsdisplay {
+	justify-content: space-around;
+}
+
+.contentarea {
+	border-bottom: 1px solid black;
+	padding: 20px;
+	min-height: 300px;
+}
+
+.bodycontent {
+	text-align: center;
+}
+
+#piccollage {
+	height: 500px;
+	padding: 0;
+}
+
+#about {
+	text-align: center;
+}
+
+.picblock {
+	float: left;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 1px solid grey;
+	background-color: lightgrey;
+}
+
+.smallpic {	
+/*	width: 10%;
+	height: 50%;*/
+}
+
+.largepic {
+	/*width: 30%;
+	height: 100%;*/
+}
+
+.standard-button {
+	width: 200px;
+	height: 80px;
+}
