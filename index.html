@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
 	<link rel="stylesheet" type="text/css" href="app/styles/mainstyle.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 	<!-- Sources -->
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
@@ -22,28 +24,37 @@
 
 	<!-- Directives -->
 	<script type="text/javascript" src="app/directives/awardcard.js"></script>
+	<script type="text/javascript" src="app/directives/newspapercard.js"></script>
 
 	<!-- Services -->
 	<!-- <script type="text/javascript" src="app/services"></script>	 -->
 	
 </head>
 <body ng-app="IgorNasibyan" ng-controller="MainController">
+
 <md-toolbar id="navbar">
-	<h1>Igor Nasibyan - The Silhouette Studio</h1>
+	<h1>Igor Nasibyan - The Silhouette Studio</h1>	
 </md-toolbar>
 
 <div class="webcore" layout="column" flex>
-	<md-content id="piccollage" class="contentarea" layout="row" flex>
+	<md-content id="piccollage" class="contentarea evencontent" layout="row" flex>
+		<div class="collagecol" layout="column" flex hide show-gt-md>
+			<div class="picblock largepic" flex>Art Here</div>
+		</div>
+		<div class="collagecol" layout="column" flex hide show-gt-sm>
+			<div class="picblock smallpic" flex>Art Here</div>
+			<div class="picblock smallpic" flex>Art Here</div>
+		</div>
 		<div class="collagecol" layout="column" flex>
 			<div class="picblock smallpic" flex>Art Here</div>
 			<div class="picblock smallpic" flex>Art Here</div>
 		</div>
 
-		<div class="collagecol" layout="column" flex>
+		<div class="collagecol" layout="column" flex hide show-gt-md>
 			<div class="picblock largepic" flex>Art Here</div>
 		</div>
 		
-		<div class="collagecol" layout="column" flex>
+		<div class="collagecol" layout="column" flex hide show-gt-xs>
 			<div class="picblock smallpic" flex>Art Here</div>
 			<div class="picblock smallpic" flex>Art Here</div>
 		</div>		
@@ -51,16 +62,15 @@
 		<div class="collagecol" layout="column" flex>
 			<div class="picblock largepic" flex>Art Here</div>
 		</div>
-
 	</md-content>
-	<md-content id="about" class="contentarea" flex>
+	<md-content id="about" class="contentarea oddcontent" flex>
 		<!-- <h2 class="md-headline">about</h2> -->
 		<div class="bodycontent">
 		<b>Igor Nasibyan</b> is a shadow artist from Erie, Pennsylvania, and creates beautiful shadow portraits done in mere minutes.
 		</div>
 		<md-button style="margin-top: 50px;" class="md-raised md-primary standard-button">Request a Piece</md-button>
 	</md-content>
-	<md-content id="video" class="contentarea" flex>
+	<md-content id="video" class="contentarea evencontent" flex>
 		<h2 class="md-headline">Art in Action</h2>
 		<div class="bodycontent"> 
 			<!-- <video>
@@ -71,7 +81,7 @@
 			<p>Art description here. This will be customizable.</p>
 		</div>
 	</md-content>
-	<md-content id="awards" class="contentarea" flex>
+	<md-content id="awards" class="contentarea oddcontent" flex>
 		<h2 class="md-headline">awards</h2>
 		<div class="bodycontent">
 			<div layout="row" flex id="awardsdisplay">
@@ -81,34 +91,65 @@
 			</div>					
 		</div>
 	</md-content>
-	<md-content id="newspaper" class="contentarea" flex>
+	<md-content id="newspaper" class="contentarea evencontent" flex>
 		<h2 class="md-headline">newspaper</h2>
-		<div class="bodycontent">LoremIpsumBacon</div>
+		<div class="bodycontent">
+			<div id="newspaperwrapper" layout="row" flex>
+				<newspaper title="newspapers[0].title " image="newspapers[0].image" description="newspapers[0].description">				
+				</newspaper>
+				<newspaper title="newspapers[1].title " image="newspapers[1].image" description="newspapers[1].description">
+				</newspaper>
+				<newspaper title="newspapers[2].title " image="newspapers[2].image" description="newspapers[2].description">
+				</newspaper>
+			</div>			
+		</div>
 	</md-content>
-	<md-content id="requestapiece" class="contentarea" flex>
+	<md-content id="requestapiece" class="contentarea oddcontent" flex>
 		<h2 class="md-headline">requestapiece</h2>
+		<div class="bodycontent" layout="column" flex style="text-align: center">
+			Igor Nasibyan will gladly create a shadow portrait for you. If interested, he will need the following. 
+			<div style="display: block; width: 300px; margin: 0 auto;">
+				<ol>
+					<li>This</li>
+					<li>That</li>
+					<li>Some of this</li>
+					<li>Some more of that</li>
+				</ol>
+			</div>
+			
+		</div>
+	</md-content>
+	<md-content id="connect" class="contentarea evencontent" flex>
+		<h2 class="md-headline">connect</h2>
 		<div class="bodycontent">LoremIpsumBacon</div>
 	</md-content>
-	
-	<md-content id="contact" class="contentarea" flex>
-		<h2 class="md-headline">contact</h2>
-		<div class="bodycontent">LoremIpsumBacon</div>
-	</md-content>
-
-	<md-button id="mainfab" class="md-fab md-primary" aria-label="Contact Igor">
-        <md-icon md-svg-src="app/images/email.svg" style="color: greenyellow;"></md-icon>
-    </md-button>
-
+	<md-fab-speed-dial id="mainfab" md-open="isOpen" md-direction="down" class="md-scale">
+		<md-fab-trigger>
+		  	<md-button  class="md-fab md-primary" aria-label="menu" >	
+		    		<md-icon md-font-set="material-icons">menu</md-icon>
+		  	</md-button>
+		</md-fab-trigger>
+		<md-fab-actions>
+		  	<md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+			  	<md-tooltip md-direction="left">
+		          Art
+		        </md-tooltip>
+		    	<md-icon md-font-set="material-icons">portrait</md-icon>
+		  	</md-button>
+		  	<md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+		  		<md-tooltip md-direction="left">
+		          Video
+		        </md-tooltip>
+		    	<md-icon md-font-set="material-icons">video_label</md-icon>
+		  	</md-button>
+		  	<md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+		  		<md-tooltip md-direction="left">
+		          Contact
+		        </md-tooltip>
+		    	<md-icon md-font-set="material-icons">email</md-icon>
+		  	</md-button>
+		</md-fab-actions>
+	</md-fab-speed-dial>
 </body>
-
-<style type="text/css">
-	.lightblue {
-		background-color: lightblue;
-	}
-
-	.lightgreen {
-		background-color: lightgreen;
-	}
-</style>
 
 </html>
