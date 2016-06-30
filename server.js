@@ -33,8 +33,8 @@ MongoClient.connect(url, function(err, db){
 	// });
 
 	findDocuments(db, function() {
-		db.close();
-	});	
+		
+	});	db.close();
 });
 
 var insertDocuments = function(db, callback) {
@@ -72,5 +72,29 @@ var findDocuments = function(db, callback) {
 		// 	console.log(keys);
 		// }
 
+	});
+}
+
+var updateDocument = function(db, callback) {
+	// Get the documents collection 
+	var collection = db.collection('documents')l 
+
+	collection.updateOne({ a : 2}, { $set: { b : 1} }, function(err, result) {
+		assert.equal(err, null);
+		assert.equal(1, result.result.n); 
+		console.log("Updated the document!");
+		callback(result);
+	});
+};
+
+var deleteDocument = function(db, callback) {
+	// Get the documents collection 
+	var collection = db.connection('documents');
+
+	collection.deleteOne({a : 3}, function(err, result) {
+		assert.equal(err, null); 
+		assert.equal(1, result.result.n); 
+		console.log("Removed the document with the field a equal to 3");
+		callback(result); 
 	});
 }

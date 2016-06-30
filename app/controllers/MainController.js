@@ -1,7 +1,8 @@
-app.controller('MainController', function($scope) {
-	$scope.message = "Swag in the club yo";
+app.controller('MainController', function($scope, $anchorScroll, $location) {
+	$scope.message = "Swag in the club yo"; 
 
 	$scope.awardURL = "https://theaphidroom.files.wordpress.com/2012/02/gb11-gold-medal_475x393-300x248.jpg";
+
 
 	// FAB open controls 
 	$scope.isOpen = false;
@@ -24,6 +25,11 @@ app.controller('MainController', function($scope) {
 		},
 	];
 
-		console.log($scope.newspapers[0].title);
+	$scope.scrollTo = function(hash) {
+		$location.hash(hash); 
+		$anchorScroll();
+	}
+
+	console.log($scope.newspapers[0].title);	
 
 });

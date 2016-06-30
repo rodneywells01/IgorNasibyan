@@ -39,28 +39,37 @@
 <div class="webcore" layout="column" flex>
 	<md-content id="piccollage" class="contentarea evencontent" layout="row" flex>
 		<div class="collagecol" layout="column" flex hide show-gt-md>
-			<div class="picblock largepic" flex>Art Here</div>
+			<div style="background-image: url('app/images/dog.jpg');" class="picblock largepic" flex>
+			</div>
 		</div>
 		<div class="collagecol" layout="column" flex hide show-gt-sm>
-			<div class="picblock smallpic" flex>Art Here</div>
-			<div class="picblock smallpic" flex>Art Here</div>
+			<div style="background-image: url('app/images/dog2.jpg');" class="picblock smallpic" flex>
+			</div>
+			<div style="background-image: url('app/images/dog4.jpg');" class="picblock smallpic" flex>
+			</div>
 		</div>
 		<div class="collagecol" layout="column" flex>
-			<div class="picblock smallpic" flex>Art Here</div>
-			<div class="picblock smallpic" flex>Art Here</div>
+			<div style="background-image: url('app/images/dog3.jpg');" class="picblock smallpic" flex>
+			</div>
+			<div style="background-image: url('app/images/figure.jpg');" class="picblock smallpic" flex>
+			</div>
 		</div>
 
 		<div class="collagecol" layout="column" flex hide show-gt-md>
-			<div class="picblock largepic" flex>Art Here</div>
+			<div style="background-image: url('app/images/family.jpg');" class="picblock largepic" flex>
+			</div>
 		</div>
 		
 		<div class="collagecol" layout="column" flex hide show-gt-xs>
-			<div class="picblock smallpic" flex>Art Here</div>
-			<div class="picblock smallpic" flex>Art Here</div>
+			<div style="background-image: url('app/images/figure.jpg');" class="picblock smallpic" flex>
+			</div>
+			<div style="background-image: url('app/images/girl.jpg');" class="picblock smallpic" flex>
+			</div>
 		</div>		
 
 		<div class="collagecol" layout="column" flex>
-			<div class="picblock largepic" flex>Art Here</div>
+			<div style="background-image: url('app/images/glasses.jpg');" class="picblock largepic" flex>
+			</div>
 		</div>
 	</md-content>
 	<md-content id="about" class="contentarea oddcontent" flex>
@@ -73,10 +82,6 @@
 	<md-content id="video" class="contentarea evencontent" flex>
 		<h2 class="md-headline">Art in Action</h2>
 		<div class="bodycontent"> 
-			<!-- <video>
-				<source src="https://www.youtube.com/embed/B34u9EP5MwQ" type="mp4">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/B34u9EP5MwQ" frameborder="0" allowfullscreen></iframe>
-			</video> -->
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/B34u9EP5MwQ" frameborder="0" allowfullscreen></iframe>
 			<p>Art description here. This will be customizable.</p>
 		</div>
@@ -119,7 +124,7 @@
 			
 		</div>
 	</md-content>
-	<md-content id="connect" class="contentarea evencontent" flex>
+	<md-content id="contact" class="contentarea evencontent" flex>
 		<h2 class="md-headline">connect</h2>
 		<div class="bodycontent">LoremIpsumBacon</div>
 	</md-content>
@@ -130,19 +135,19 @@
 		  	</md-button>
 		</md-fab-trigger>
 		<md-fab-actions>
-		  	<md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+		  	<md-button ng-click="scrollTo('piccollage')" aria-label="Twitter" class="md-fab md-raised md-mini">
 			  	<md-tooltip md-direction="left">
 		          Art
 		        </md-tooltip>
 		    	<md-icon md-font-set="material-icons">portrait</md-icon>
 		  	</md-button>
-		  	<md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+		  	<md-button ng-click="scrollTo('video')" aria-label="Facebook" class="md-fab md-raised md-mini">
 		  		<md-tooltip md-direction="left">
 		          Video
 		        </md-tooltip>
 		    	<md-icon md-font-set="material-icons">video_label</md-icon>
 		  	</md-button>
-		  	<md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+		  	<md-button ng-click="scrollTo('contact')" aria-label="Google Hangout" class="md-fab md-raised md-mini">
 		  		<md-tooltip md-direction="left">
 		          Contact
 		        </md-tooltip>

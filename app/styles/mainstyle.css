@@ -66,3 +66,9 @@
 .evencontent {
 	background-color: lightgrey;
 }
+
+.collagecol div {
+	background-position: center; 
+	background-size: cover;
+	background-repeat: no-repeat;
+}
