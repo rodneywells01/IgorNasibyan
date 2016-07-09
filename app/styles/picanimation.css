@@ -1,0 +1,14 @@
+.picblock {
+	/* Base Styles */
+	float: left;
+	display: inline-block;
+	box-sizing: border-box;
+	/*border: 1px solid grey;*/
+	background-color: lightgrey;
+
+	/* Animation Styles */
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}

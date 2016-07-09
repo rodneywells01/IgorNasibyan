@@ -1,0 +1,31 @@
+#artheadbar {
+	text-align: center;
+}
+
+#artcollection {
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	transition: all .5s ease-in-out;
+  	height: 200px;
+  	min-height: 0px;
+}
+
+.expanded {
+	height: 1200px !important;
+	z-index: 20;
+	padding: 0;	
+}
+
+.artcollectionpanel {
+	
+	/*height: 100%;*/
+	/*width: 100%; */
+	/*background-color: grey; */
+	/*border: 1px solid grey;	*/
+}
+
+.imagewrapper {
+	width: 100px;
+	height: 100px;
+}

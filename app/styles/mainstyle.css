@@ -1,3 +1,6 @@
+body {
+	height: auto !important;
+}
 #navbar {
 	text-align: center;
 	background-color: #554b47;
@@ -30,14 +33,6 @@
 
 #about {
 	text-align: center;
-}
-
-.picblock {
-	float: left;
-	display: inline-block;
-	box-sizing: border-box;
-	border: 1px solid grey;
-	background-color: lightgrey;
 }
 
 .smallpic {	

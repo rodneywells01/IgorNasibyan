@@ -8,7 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="app/styles/mainstyle.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+	<link rel="stylesheet" type="text/css" href="app/styles/picanimation.css">
+	<link rel="stylesheet" type="text/css" href="app/styles/artcollection.css">
 
 	<!-- Sources -->
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
@@ -21,6 +22,8 @@
 
 	<!-- Controllers -->
 	<script type="text/javascript" src="app/controllers/MainController.js"></script>
+	<script type="text/javascript" src="app/controllers/ArtController.js"></script>
+	<script type="text/javascript" src="app/controllers/AnimationController.js"></script>
 
 	<!-- Directives -->
 	<script type="text/javascript" src="app/directives/awardcard.js"></script>
@@ -28,76 +31,74 @@
 
 	<!-- Services -->
 	<!-- <script type="text/javascript" src="app/services"></script>	 -->
-	
 </head>
 <body ng-app="IgorNasibyan" ng-controller="MainController">
-
 <md-toolbar id="navbar">
 	<h1>Igor Nasibyan - The Silhouette Studio</h1>	
 </md-toolbar>
-
 <div class="webcore" layout="column" flex>
 	<md-content id="piccollage" class="contentarea evencontent" layout="row" flex>
 		<div class="collagecol" layout="column" flex hide show-gt-md>
-			<div style="background-image: url('app/images/dog.jpg');" class="picblock largepic" flex>
+			<div style="background-image: url('app/images/artwork/dog.jpg');" class="picblock largepic" flex>
 			</div>
 		</div>
 		<div class="collagecol" layout="column" flex hide show-gt-sm>
-			<div style="background-image: url('app/images/dog2.jpg');" class="picblock smallpic" flex>
+			<div style="background-image: url('app/images/artwork/dog2.jpg');" class="picblock smallpic" flex>
 			</div>
-			<div style="background-image: url('app/images/dog4.jpg');" class="picblock smallpic" flex>
+			<div style="background-image: url('app/images/artwork/dog4.jpg');" class="picblock smallpic" flex>
 			</div>
 		</div>
 		<div class="collagecol" layout="column" flex>
-			<div style="background-image: url('app/images/dog3.jpg');" class="picblock smallpic" flex>
+			<div style="background-image: url('app/images/artwork/dog3.jpg');" class="picblock smallpic" flex>
 			</div>
-			<div style="background-image: url('app/images/figure.jpg');" class="picblock smallpic" flex>
+			<div style="background-image: url('app/images/artwork/figure.jpg');" class="picblock smallpic" flex>
 			</div>
 		</div>
 
 		<div class="collagecol" layout="column" flex hide show-gt-md>
-			<div style="background-image: url('app/images/family.jpg');" class="picblock largepic" flex>
+			<div style="background-image: url('app/images/artwork/family.jpg');" class="picblock largepic" flex>
 			</div>
 		</div>
 		
 		<div class="collagecol" layout="column" flex hide show-gt-xs>
-			<div style="background-image: url('app/images/figure.jpg');" class="picblock smallpic" flex>
+			<div style="background-image: url('app/images/artwork/figure.jpg');" class="picblock smallpic" flex>
 			</div>
-			<div style="background-image: url('app/images/girl.jpg');" class="picblock smallpic" flex>
+			<div style="background-image: url('app/images/artwork/girl.jpg');" class="picblock smallpic" flex>
 			</div>
 		</div>		
 
 		<div class="collagecol" layout="column" flex>
-			<div style="background-image: url('app/images/glasses.jpg');" class="picblock largepic" flex>
+			<div style="background-image: url('app/images/artwork/glasses.jpg');" class="picblock largepic" flex>
 			</div>
 		</div>
 	</md-content>
 	<md-content id="about" class="contentarea oddcontent" flex>
-		<!-- <h2 class="md-headline">about</h2> -->
 		<div class="bodycontent">
-		<b>Igor Nasibyan</b> is a shadow artist from Erie, Pennsylvania, and creates beautiful shadow portraits done in mere minutes.
+		<b>Igor Nasibyan</b> is a shadow artist from Erie, Pennsylvania, who creates beautiful shadow portraits in mere minutes.
 		</div>
 		<md-button style="margin-top: 50px;" class="md-raised md-primary standard-button">Request a Piece</md-button>
 	</md-content>
 	<md-content id="video" class="contentarea evencontent" flex>
-		<h2 class="md-headline">Art in Action</h2>
 		<div class="bodycontent"> 
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/B34u9EP5MwQ" frameborder="0" allowfullscreen></iframe>
 			<p>Art description here. This will be customizable.</p>
 		</div>
 	</md-content>
+	<md-content id="artcollection" class="contentarea evencontent" ng-class="{expanded: expandedClass}" style="background-color: grey; color: black;" ng-controller="ArtController">
+		<div id="artheadbar" flex> 
+			<md-button id="ViewCollectionButton" class="md-raised" style="color: grey;" ng-click="showDialog()">View the Collection</md-button>
+		</div>
+	</md-content>
 	<md-content id="awards" class="contentarea oddcontent" flex>
-		<h2 class="md-headline">awards</h2>
 		<div class="bodycontent">
 			<div layout="row" flex id="awardsdisplay">
-				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
+				<awardcard pic="app/images/blueribbon.jpg" description="test" title="testtitle"></awardcard>
 				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
 				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
 			</div>					
 		</div>
 	</md-content>
-	<md-content id="newspaper" class="contentarea evencontent" flex>
-		<h2 class="md-headline">newspaper</h2>
+	<md-content id="newspaper" class="contentarea evencontent" flex>		
 		<div class="bodycontent">
 			<div id="newspaperwrapper" layout="row" flex>
 				<newspaper title="newspapers[0].title " image="newspapers[0].image" description="newspapers[0].description">				
@@ -109,8 +110,7 @@
 			</div>			
 		</div>
 	</md-content>
-	<md-content id="requestapiece" class="contentarea oddcontent" flex>
-		<h2 class="md-headline">requestapiece</h2>
+	<md-content id="requestapiece" class="contentarea oddcontent" flex>		
 		<div class="bodycontent" layout="column" flex style="text-align: center">
 			Igor Nasibyan will gladly create a shadow portrait for you. If interested, he will need the following. 
 			<div style="display: block; width: 300px; margin: 0 auto;">
@@ -120,12 +120,10 @@
 					<li>Some of this</li>
 					<li>Some more of that</li>
 				</ol>
-			</div>
-			
+			</div>			
 		</div>
 	</md-content>
-	<md-content id="contact" class="contentarea evencontent" flex>
-		<h2 class="md-headline">connect</h2>
+	<md-content id="contact" class="contentarea evencontent" flex>		
 		<div class="bodycontent">LoremIpsumBacon</div>
 	</md-content>
 	<md-fab-speed-dial id="mainfab" md-open="isOpen" md-direction="down" class="md-scale">
@@ -135,7 +133,7 @@
 		  	</md-button>
 		</md-fab-trigger>
 		<md-fab-actions>
-		  	<md-button ng-click="scrollTo('piccollage')" aria-label="Twitter" class="md-fab md-raised md-mini">
+		  	<md-button ng-click="scrollTo('artcollection')" aria-label="Twitter" class="md-fab md-raised md-mini">
 			  	<md-tooltip md-direction="left">
 		          Art
 		        </md-tooltip>
@@ -156,5 +154,4 @@
 		</md-fab-actions>
 	</md-fab-speed-dial>
 </body>
-
 </html>
