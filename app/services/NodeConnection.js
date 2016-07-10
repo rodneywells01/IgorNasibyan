@@ -8,6 +8,10 @@ app.service('NodeConnection', function($http, $q) {
 		
 	};
 
+	this.getContactInfo = function() {
+		return httpGet('/contact-information');
+	};
+
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {

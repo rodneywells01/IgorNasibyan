@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="app/directives/anchorLink.js"></script>
 
 	<!-- Services -->
-	<!-- <script type="text/javascript" src="app/services"></script>	 -->
+	<script type="text/javascript" src="app/services/NodeConnection.js"></script>	
 </head>
 <body ng-app="IgorNasibyan" >
 <md-toolbar id="navbar">
@@ -124,9 +124,11 @@
 			</div>			
 		</div>
 	</md-content>
-	<md-content id="contact" class="contentarea evencontent" flex>		
+	<md-content id="contact" class="contentarea evencontent" flex>	
 		<div class="bodycontent">
-			<p>It's about to get really real.</p>
+			<p>Connect with Me</p>			
+			<p>{{ contact.email }}</p>
+			<p>{{ contact.location }} </p>
 		</div>
 	</md-content>
 	<anchor-link></anchor-link>

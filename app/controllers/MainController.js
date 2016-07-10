@@ -1,6 +1,17 @@
-app.controller('MainController', function($scope, $anchorScroll, $location, $mdPanel) {
+app.controller('MainController', function($scope, $anchorScroll, $location, $mdPanel, NodeConnection) {
 	$scope.message = "Swag in the club yo"; 
 	$scope.awardURL = "https://theaphidroom.files.wordpress.com/2012/02/gb11-gold-medal_475x393-300x248.jpg";
+	$scope.contact = {
+		email: '',
+		homePhone: '',
+		location: '',
+		mobilePhone: '', 
+		socialFacebook: '',
+		socialTwitter: '',
+		socialLinkedIn: '',
+		socialYoutube: ''
+	};
+
 
 	// FAB open controls 
 
@@ -22,12 +33,29 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 		},	
 	];
 
-	
-	$scope.showDialog = function() {
+	function fetchAllInfo() {
+		fetchContactInfo(); 
+	}
 
-	};
+	function fetchContactInfo() {
+		NodeConnection.getContactInfo().then(function(data) {
+			// if(err) {
+			// 	console.log("Error!!");
+			// 	console.log(err);
+			// } else {
+				console.log("Data obtained!");
+				console.log(data);
 
-	console.log($scope.newspapers[0].title);	
+				// Assign Data. 
+				var keys = Object.keys($scope.contact);
+				var i = 0; 
+				for (i = 0; i < keys.length; i++) {
+					$scope.contact[keys[i]] = data[0][keys[i]]; 
+				}			
+		});
+	}
+
+	fetchAllInfo();
 });
 
 function DialogCode() {
