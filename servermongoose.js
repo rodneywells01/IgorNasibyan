@@ -1,22 +1,24 @@
 var express = require("express");
+var cors = require("cors");
 var app = express();
 
-// Initiate application. 
 app.use(function(req, res, next) {
 	console.log(`Received ${req.method} request for '${req.url}'`);
 	next();
 });
-
-// Choose where you would like to server static files from. 
 app.use(express.static("./")); 
+app.use(cors());
 
-// app.use(cors());
+// BEGIN DATA ROUTES. 
+app.get("/contact-information", function(req, res) {
+	// Call res.json(data) to send back data. 
+	var data; 
 
+
+	res.json(data);
+});
 app.listen(3000);
-
-
 console.log("Express app running on port 3000");
-
 module.exports = app;
 
 // Database connection 
@@ -25,7 +27,7 @@ var assert = require('assert');
 var mongoose = require('mongoose');
 
 // DB Connection 
-var url = "mongodb://107.170.24.17"
+var url = "mongodb://107.170.24.17";
 mongoose.connect(url, function(error) {
 	if(error) {
 		console.log(error); 

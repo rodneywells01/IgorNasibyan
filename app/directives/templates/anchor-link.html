@@ -1,0 +1,27 @@
+<md-fab-speed-dial id="mainfab" md-open="isOpen" md-direction="down" class="md-scale">
+	<md-fab-trigger>
+	  	<md-button  class="md-fab md-primary" aria-label="menu" >	
+	    		<md-icon md-font-set="material-icons">menu</md-icon>
+	  	</md-button>
+	</md-fab-trigger>
+	<md-fab-actions>		  	
+	  	<md-button ng-click="scrollTo('video')" aria-label="Facebook" class="md-fab md-raised md-mini">
+	  		<md-tooltip md-direction="left">
+	          Video
+	        </md-tooltip>
+	    	<md-icon md-font-set="material-icons">video_label</md-icon>
+	  	</md-button>
+	  	<md-button ng-click="scrollTo('artcollection')" aria-label="Twitter" class="md-fab md-raised md-mini">
+		  	<md-tooltip md-direction="left">
+	          Art
+	        </md-tooltip>
+	    	<md-icon md-font-set="material-icons">portrait</md-icon>
+	  	</md-button>
+	  	<md-button ng-click="scrollTo('contact')" aria-label="Google Hangout" class="md-fab md-raised md-mini">
+	  		<md-tooltip md-direction="left">
+	          Contact
+	        </md-tooltip>
+	    	<md-icon md-font-set="material-icons">email</md-icon>
+	  	</md-button>
+	</md-fab-actions>
+</md-fab-speed-dial>	

@@ -28,15 +28,16 @@
 	<!-- Directives -->
 	<script type="text/javascript" src="app/directives/awardcard.js"></script>
 	<script type="text/javascript" src="app/directives/newspapercard.js"></script>
-	<script src="//localhost:35729/livereload.js"></script>
+	<script type="text/javascript" src="app/directives/anchorLink.js"></script>
+
 	<!-- Services -->
 	<!-- <script type="text/javascript" src="app/services"></script>	 -->
 </head>
-<body ng-app="IgorNasibyan" ng-controller="MainController">
+<body ng-app="IgorNasibyan" >
 <md-toolbar id="navbar">
 	<h1>Igor Nasibyan - The Silhouette Studio</h1>	
 </md-toolbar>
-<div class="webcore" layout="column" flex>
+<div class="webcore" layout="column" flex ng-controller="MainController">
 	<md-content id="piccollage" class="contentarea evencontent" layout="row" flex>
 		<div class="collagecol" layout="column" flex hide show-gt-md>
 			<div style="background-image: url('app/images/artwork/dog.jpg');" class="picblock largepic" flex>
@@ -74,7 +75,7 @@
 	</md-content>
 	<md-content id="about" class="contentarea oddcontent" flex>
 		<div class="bodycontent">
-		<b>Igor Nasibyan</b> is a shadow artist from Erie, Pennsylvania, who creates beautiful shadow portraits in mere minutes.
+		<b>Igor Nasibyan</b> <span>is a shadow artist from Erie, Pennsylvania, who creates beautiful shadow portraits in mere minutes.</span>
 		</div>
 		<md-button style="margin-top: 50px;" class="md-raised md-primary standard-button">Request a Piece</md-button>
 	</md-content>
@@ -124,34 +125,10 @@
 		</div>
 	</md-content>
 	<md-content id="contact" class="contentarea evencontent" flex>		
-		<div class="bodycontent">LoremIpsumBacon</div>
+		<div class="bodycontent">
+			<p>It's about to get really real.</p>
+		</div>
 	</md-content>
-	<md-fab-speed-dial id="mainfab" md-open="isOpen" md-direction="down" class="md-scale">
-		<md-fab-trigger>
-		  	<md-button  class="md-fab md-primary" aria-label="menu" >	
-		    		<md-icon md-font-set="material-icons">menu</md-icon>
-		  	</md-button>
-		</md-fab-trigger>
-		<md-fab-actions>
-		  	<md-button ng-click="scrollTo('artcollection')" aria-label="Twitter" class="md-fab md-raised md-mini">
-			  	<md-tooltip md-direction="left">
-		          Art
-		        </md-tooltip>
-		    	<md-icon md-font-set="material-icons">portrait</md-icon>
-		  	</md-button>
-		  	<md-button ng-click="scrollTo('video')" aria-label="Facebook" class="md-fab md-raised md-mini">
-		  		<md-tooltip md-direction="left">
-		          Video
-		        </md-tooltip>
-		    	<md-icon md-font-set="material-icons">video_label</md-icon>
-		  	</md-button>
-		  	<md-button ng-click="scrollTo('contact')" aria-label="Google Hangout" class="md-fab md-raised md-mini">
-		  		<md-tooltip md-direction="left">
-		          Contact
-		        </md-tooltip>
-		    	<md-icon md-font-set="material-icons">email</md-icon>
-		  	</md-button>
-		</md-fab-actions>
-	</md-fab-speed-dial>
+	<anchor-link></anchor-link>
 </body>
 </html>

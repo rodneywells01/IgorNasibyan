@@ -3,7 +3,6 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 	$scope.awardURL = "https://theaphidroom.files.wordpress.com/2012/02/gb11-gold-medal_475x393-300x248.jpg";
 
 	// FAB open controls 
-	$scope.isOpen = false;
 
 	$scope.newspapers = [
 		{
@@ -23,11 +22,7 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 		},	
 	];
 
-	$scope.scrollTo = function(hash) {
-		$location.hash(hash); 
-		$anchorScroll();
-	};
-
+	
 	$scope.showDialog = function() {
 
 	};
