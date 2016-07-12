@@ -1,3 +1,4 @@
+<!-- Social Media Graphics from: https://www.iconfinder.com/iconsets/social-media-2071 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
 </head>
 <body ng-app="IgorNasibyan" >
 <md-toolbar id="navbar">
-	<h1>Igor Nasibyan - The Silhouette Studio</h1>	
+	<h1>The Silhouette Studio</h1>	
 </md-toolbar>
 <div class="webcore" layout="column" flex ng-controller="MainController">
 	<md-content id="piccollage" class="contentarea evencontent" layout="row" flex>
@@ -125,10 +126,52 @@
 		</div>
 	</md-content>
 	<md-content id="contact" class="contentarea evencontent" flex>	
-		<div class="bodycontent">
-			<p>Connect with Me</p>			
-			<p>{{ contact.email }}</p>
-			<p>{{ contact.location }} </p>
+		<div class="bodycontent" flex layout="row">
+			<div id="contact-card-wrap" class="center-children">
+				<md-card id="connect-card">
+					<md-card-title>
+						<md-card-title-text>
+							<span class="md-headline">Connect with Me</span>
+						</md-card-title-text>
+					</md-card-title>
+					<md-card-content>
+						<div layout="column" id="connect-info">	
+							<div id="connect-details">
+								<div>{{ contact.email }}</div>
+								<div>{{ contact.location }} </div>	
+							</div>				
+							<div layout="row">
+								<ul layout="row" id="socialMediaList">
+									<li class="socialMediaLink">
+										<a href="{{ contact.socialFacebook }}">
+											<img src="app/images/socialmedia/facebook.png">
+										</a>
+									</li>
+									<li class="socialMediaLink">
+										<a href="{{ contact.socialYouTube }}">
+											<img src="app/images/socialmedia/youtube.png">
+										</a>
+									</li>
+									<li class="socialMediaLink">
+										<a href="{{ contact.socialLinkedIn }}">
+											<img src="app/images/socialmedia/linkedin.png">
+										</a>
+									</li>
+									<li class="socialMediaLink">
+										<a href="{{ contact.socialTwitter }}">
+											<img src="app/images/socialmedia/twitter.png">
+										</a>
+									</li>						
+								</ul>
+							</div>
+						</div>
+					</md-card-content>
+				</md-card>
+			</div>					
+			<div id="mapcontainer">
+				Map Here.
+			</div>
+			
 		</div>
 	</md-content>
 	<anchor-link></anchor-link>

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 				livereload: true,
 			},
 			files: [
-				'index.html'.
+				'index.html',
 				'*/app/styles/**.css']
 		}		
 	});
@@ -17,6 +17,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
-
 	grunt.registerTask('default', ['watch']);
 }
