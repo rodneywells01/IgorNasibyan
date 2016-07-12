@@ -16,6 +16,10 @@ app.service('NodeConnection', function($http, $q) {
 		return httpGet('/newspapers');
 	}
 
+	this.getAwards = function() {
+		return httpGet('/awards'); 
+	}
+
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {

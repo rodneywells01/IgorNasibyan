@@ -11,12 +11,13 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 		socialLinkedIn: '',
 		socialYoutube: ''
 	};
-
+	$scope.awards = [];
 	$scope.newspapers = [];
 
 	function fetchAllInfo() {
 		fetchContactInfo(); 
 		fetchNewsPapers();
+		fetchAwards()
 	}
 
 	function fetchContactInfo() {
@@ -28,6 +29,12 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 	function fetchNewsPapers() {
 		NodeConnection.getNewsPapers().then(function(data) {
 			$scope.newspapers = data;
+		});
+	}
+
+	function fetchAwards() {
+		NodeConnection.getAwards().then(function(data) {
+			$scope.awards = data;
 		});
 	}
 

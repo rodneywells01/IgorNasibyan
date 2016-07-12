@@ -21,6 +21,12 @@ var newspaperSchema = mongoose.Schema({
 	description: String
 });
 var NewspaperModel = mongoose.model('Newspaper', newspaperSchema); 
+var awardsSchema = mongoose.Schema({
+	title: String,
+	fileName: String,
+	description: String
+});
+var AwardsModel = mongoose.model('Award', awardsSchema); 
 /* END Schema/Model Definition */
 
 // DB Connection 
@@ -36,6 +42,8 @@ mongoose.connect(url, function(error) {
 // Server Instantiation. 
 var express = require("express");
 var cors = require("cors");
+
+var fs = require("fs");
 var app = express();
 
 app.use(function(req, res, next) {
@@ -61,6 +69,19 @@ app.get('/newspapers', function(req, res) {
 		res.json(docs);
 	});
 	console.log(res);
+});
+
+app.get('/awards', function(req, res) {
+	AwardsModel.find(function(err, docs) {
+		if(err) return console.error(err); 	
+		res.json(docs);
+	});
+	console.log(res);
+});
+
+app.get('/artcollection', function(req,res) {
+	var fileNames = fs.readdirSync('./app/images/artwork');
+	console.log(fileNames);
 });
 
 /* END DATA ROUTES */

@@ -94,9 +94,7 @@
 	<md-content id="awards" class="contentarea oddcontent" flex>
 		<div class="bodycontent">
 			<div layout="row" flex id="awardsdisplay">
-				<awardcard pic="app/images/blueribbon.jpg" description="test" title="testtitle"></awardcard>
-				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
-				<awardcard pic="{{ awardURL }}" description="test" title="testtitle"></awardcard>
+				<awardcard ng-repeat="award in awards" pic="app/images/blueribbon.jpg" description="{{ award.description }}" title="{{ award.title }}"></awardcard>				
 			</div>					
 		</div>
 	</md-content>
