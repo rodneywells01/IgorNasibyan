@@ -103,12 +103,8 @@
 	<md-content id="newspaper" class="contentarea evencontent" flex>		
 		<div class="bodycontent">
 			<div id="newspaperwrapper" layout="row" flex>
-				<newspaper title="newspapers[0].title " image="newspapers[0].image" description="newspapers[0].description">				
-				</newspaper>
-				<newspaper title="newspapers[1].title " image="newspapers[1].image" description="newspapers[1].description">
-				</newspaper>
-				<newspaper title="newspapers[2].title " image="newspapers[2].image" description="newspapers[2].description">
-				</newspaper>
+				<newspaper ng-repeat="newspaper in newspapers" title="newspaper.title " image="newspaper.fileName" description="newspaper.description">				
+				</newspaper>				
 			</div>			
 		</div>
 	</md-content>

@@ -3,6 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert'); 
 var mongoose = require('mongoose');
 
+/* Begin Schema/Model Definition */
 var contactSchema = mongoose.Schema({
 	email: String,
 	location: String,
@@ -14,6 +15,13 @@ var contactSchema = mongoose.Schema({
 	socialLinkedIn: String
 });
 var ContactModel = mongoose.model('Contact', contactSchema); 
+var newspaperSchema = mongoose.Schema({
+	title: String,
+	fileName: String,
+	description: String
+});
+var NewspaperModel = mongoose.model('Newspaper', newspaperSchema); 
+/* END Schema/Model Definition */
 
 // DB Connection 
 var url = "mongodb://107.170.24.17";
@@ -44,9 +52,19 @@ app.get("/contact-information", function(req, res) {
 		if(err) return console.error(err); 	
 		res.json(docs);
 	});
-	console.log(res);
-	
+	console.log(res);	
 });
+
+app.get('/newspapers', function(req, res) {
+	NewspaperModel.find(function(err, docs) {
+		if(err) return console.error(err); 	
+		res.json(docs);
+	});
+	console.log(res);
+});
+
+/* END DATA ROUTES */
+
 app.listen(3000);
 console.log("Express app running on port 3000");
 module.exports = app;

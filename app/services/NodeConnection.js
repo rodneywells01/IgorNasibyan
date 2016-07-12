@@ -12,6 +12,10 @@ app.service('NodeConnection', function($http, $q) {
 		return httpGet('/contact-information');
 	};
 
+	this.getNewsPapers = function() {
+		return httpGet('/newspapers');
+	}
+
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {

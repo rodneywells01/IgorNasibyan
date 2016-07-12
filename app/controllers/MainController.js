@@ -12,46 +12,22 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 		socialYoutube: ''
 	};
 
-
-	// FAB open controls 
-
-	$scope.newspapers = [
-		{
-			'title': 'Test Paper Title 1',
-			'image': '',
-			'description': 'Great article'
-		},
-		{
-			'title': 'Test Paper Title 2',
-			'image': '',
-			'description': 'Great article'
-		},
-		{
-			'title': 'Test Paper Title 3',
-			'image': '',
-			'description': 'Great article'
-		},	
-	];
+	$scope.newspapers = [];
 
 	function fetchAllInfo() {
 		fetchContactInfo(); 
+		fetchNewsPapers();
 	}
 
 	function fetchContactInfo() {
-		NodeConnection.getContactInfo().then(function(data) {
-			// if(err) {
-			// 	console.log("Error!!");
-			// 	console.log(err);
-			// } else {
-				console.log("Data obtained!");
-				console.log(data);
+		NodeConnection.getContactInfo().then(function(data) {					
+			$scope.contact = data[0];		
+		});
+	}
 
-				// Assign Data. 
-				var keys = Object.keys($scope.contact);
-				var i = 0; 
-				for (i = 0; i < keys.length; i++) {
-					$scope.contact[keys[i]] = data[0][keys[i]]; 
-				}			
+	function fetchNewsPapers() {
+		NodeConnection.getNewsPapers().then(function(data) {
+			$scope.newspapers = data;
 		});
 	}
 
