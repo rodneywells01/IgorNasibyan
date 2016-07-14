@@ -1,7 +1,3 @@
-#artheadbar {
-	text-align: center;
-}
-
 #artcollection {
 	display: flex;
 	align-items: center;
@@ -17,15 +13,7 @@
 	padding: 0;	
 }
 
-.artcollectionpanel {
-	
-	/*height: 100%;*/
-	/*width: 100%; */
-	/*background-color: grey; */
-	/*border: 1px solid grey;	*/
-}
-
-.imagewrapper {
-	width: 100px;
-	height: 100px;
+.art-piece {
+	width: 33%;
+	box-sizing: border-box;
 }

@@ -17,7 +17,8 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 	function fetchAllInfo() {
 		fetchContactInfo(); 
 		fetchNewsPapers();
-		fetchAwards()
+		fetchAwards();
+		// fetchArtWork();
 	}
 
 	function fetchContactInfo() {
@@ -35,6 +36,12 @@ app.controller('MainController', function($scope, $anchorScroll, $location, $mdP
 	function fetchAwards() {
 		NodeConnection.getAwards().then(function(data) {
 			$scope.awards = data;
+		});
+	}
+
+	function fetchArtwork() {
+		NodeConnection.getImageList().then(function(data) {
+			$scope.artFiles = data;
 		});
 	}
 

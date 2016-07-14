@@ -81,7 +81,8 @@ app.get('/awards', function(req, res) {
 
 app.get('/artcollection', function(req,res) {
 	var fileNames = fs.readdirSync('./app/images/artwork');
-	console.log(fileNames);
+	console.log(fileNames)
+	res.json(fileNames);
 });
 
 /* END DATA ROUTES */

@@ -5,7 +5,11 @@ app.service('NodeConnection', function($http, $q) {
 	};
 
 	this.getImageList = function() {
-		
+		console.log("here");
+		var data = httpGet('artcollection');
+		console.log("Here it is!");
+		console.log(data);
+		return data;
 	};
 
 	this.getContactInfo = function() {
@@ -23,8 +27,10 @@ app.service('NodeConnection', function($http, $q) {
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {
+        	console.log("SUCCESS");
             deferred.resolve(response);
         }).error(function (reason) {
+        	console.log("FAILURE");
             deferred.reject(reason);
         });
 
