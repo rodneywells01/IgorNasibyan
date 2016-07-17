@@ -12,6 +12,7 @@ app.controller('ArtController', function($scope, $mdPanel, NodeConnection) {
 	fetchArtwork(); 
 
 	$scope.displayArt = function() {
+		console.log($scope.artFiles.length);
 		/* Compile and display art-piece elements. */
 		$scope.expandedClass = !$scope.expandedClass;
 		var container = document.getElementById('artcollection'); 
@@ -21,7 +22,7 @@ app.controller('ArtController', function($scope, $mdPanel, NodeConnection) {
 			var newimg = "<img class='art-piece' src='app/images/artwork/" + $scope.artFiles[i] + "'>";
 			imglist += newimg;
 		}
-		container.innerHTML = imglist;
+		// container.innerHTML = imglist;
 	};
 
 	

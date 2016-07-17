@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="app/directives/awardcard.js"></script>
 	<script type="text/javascript" src="app/directives/newspapercard.js"></script>
 	<script type="text/javascript" src="app/directives/anchorLink.js"></script>
+	<script type="text/javascript" src="app/directives/artPiece.js"></script>
 
 	<!-- Services -->
 	<script type="text/javascript" src="app/services/NodeConnection.js"></script>	
@@ -86,9 +87,15 @@
 			<p>Art description here. This will be customizable.</p>
 		</div>
 	</md-content>
-	<md-content id="artcollection" class="contentarea evencontent" ng-class="{expanded: expandedClass}" style="background-color: grey; color: black;" ng-controller="ArtController">
+	<md-content id="artcollection" class="contentarea evencontent" ng-class="{expanded: expandedClass}" ng-controller="ArtController">
+		<md-grid-list id="artwork-grid-list" ng-show="expandedClass" md-cols="4" md-row-height="300px" md-gutter="8px">
+		    <md-grid-tile ng-repeat="artFile in artFiles" md-rowspan="1" md-colspan="1" ng-class="tile.background">
+		    	<art-piece imageName='artFile'></art-piece>		      
+		    </md-grid-tile>
+	  	</md-grid-list>
 		<div id="artheadbar" flex> 
-			<md-button id="ViewCollectionButton" class="md-raised" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
+			<md-button ng-show="!expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
+			<md-button ng-show="expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
 		</div>
 	</md-content>
 	<md-content id="awards" class="contentarea oddcontent" flex>
