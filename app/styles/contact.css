@@ -1,0 +1,25 @@
+#contact > div {
+	justify-content: space-around;	
+}
+
+#contact-card-wrap {
+	/*padding: 20px;*/
+	box-sizing: border-box;
+	max-width: 100%;
+	width: 100%;
+	justify-content: center;
+}
+
+#connect-card {
+	max-width: 100%;
+	justify-content: center;
+	margin: 0px !important;	
+
+}
+
+#connect-info {
+	margin-right: 50px;
+	margin-left: 50px;	 
+	justify-content: center;
+	align-items: center;
+}
