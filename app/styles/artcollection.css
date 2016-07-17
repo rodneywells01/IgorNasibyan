@@ -9,6 +9,7 @@
   	transition: all .5s ease-in-out;
   	height: 200px;
   	min-height: 0px;
+  	background-color: darkgrey;
 }
 
 .expanded {

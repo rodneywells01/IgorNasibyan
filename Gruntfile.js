@@ -7,8 +7,9 @@ module.exports = function(grunt) {
 			},
 			files: [
 				'index.html',
-				'./app/styles/**.css',
-				'./app/directives/templates/**.html']
+				'app/**/*.css',
+				'app/**/*.html',
+				'app/**/*.js']
 		}		
 	});
 
