@@ -1,51 +1,5 @@
 app.controller('MainController', function($scope, $anchorScroll, $location, $mdPanel, NodeConnection) {
-	$scope.message = "Swag in the club yo"; 
-	$scope.awardURL = "https://theaphidroom.files.wordpress.com/2012/02/gb11-gold-medal_475x393-300x248.jpg";
-	$scope.contact = {
-		email: '',
-		homePhone: '',
-		location: '',
-		mobilePhone: '', 
-		socialFacebook: '',
-		socialTwitter: '',
-		socialLinkedIn: '',
-		socialYoutube: ''
-	};
-	$scope.awards = [];
-	$scope.newspapers = [];
-
-	function fetchAllInfo() {
-		fetchContactInfo(); 
-		fetchNewsPapers();
-		fetchAwards();
-		// fetchArtWork();
-	}
-
-	function fetchContactInfo() {
-		NodeConnection.getContactInfo().then(function(data) {					
-			$scope.contact = data[0];		
-		});
-	}
-
-	function fetchNewsPapers() {
-		NodeConnection.getNewsPapers().then(function(data) {
-			$scope.newspapers = data;
-		});
-	}
-
-	function fetchAwards() {
-		NodeConnection.getAwards().then(function(data) {
-			$scope.awards = data;
-		});
-	}
-
-	function fetchArtwork() {
-		NodeConnection.getImageList().then(function(data) {
-			$scope.artFiles = data;
-		});
-	}
-
-	fetchAllInfo();
+	
 });
 
 function DialogCode() {

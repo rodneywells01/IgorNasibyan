@@ -26,7 +26,15 @@
 	<script type="text/javascript" src="app/controllers/ArtController.js"></script>
 	<script type="text/javascript" src="app/controllers/AnimationController.js"></script>
 
-	<!-- Directives -->
+	<!-- Primary Directives -->
+	<script type="text/javascript" src="app/directives/artCollectionSection.js"></script>
+	<script type="text/javascript" src="app/directives/awardsSection.js"></script>
+	<script type="text/javascript" src="app/directives/contactSection.js"></script>
+	<script type="text/javascript" src="app/directives/newspapersSection.js"></script>
+	<script type="text/javascript" src="app/directives/requestSection.js"></script>
+	<script type="text/javascript" src="app/directives/videoSection.js"></script>
+
+	<!-- Element Directives -->
 	<script type="text/javascript" src="app/directives/awardcard.js"></script>
 	<script type="text/javascript" src="app/directives/newspapercard.js"></script>
 	<script type="text/javascript" src="app/directives/anchorLink.js"></script>
@@ -81,100 +89,12 @@
 		</div>
 		<md-button style="margin-top: 50px;" class="md-raised md-primary standard-button">Request a Piece</md-button>
 	</md-content>
-	<md-content id="video" class="contentarea evencontent" flex>
-		<div class="bodycontent"> 
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/B34u9EP5MwQ" frameborder="0" allowfullscreen></iframe>
-			<p>Art description here. This will be customizable.</p>
-		</div>
-	</md-content>
-	<md-content id="artcollection" class="contentarea evencontent" ng-class="{expanded: expandedClass}" ng-controller="ArtController">
-		<md-grid-list id="artwork-grid-list" ng-show="expandedClass" md-cols="4" md-row-height="300px" md-gutter="8px">
-		    <md-grid-tile ng-repeat="artFile in artFiles" md-rowspan="1" md-colspan="1" ng-class="tile.background">
-		    	<art-piece imageName='artFile'></art-piece>		      
-		    </md-grid-tile>
-	  	</md-grid-list>
-		<div id="artheadbar" flex> 
-			<md-button ng-show="!expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
-			<md-button ng-show="expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
-		</div>
-	</md-content>
-	<md-content id="awards" class="contentarea oddcontent" flex>
-		<div class="bodycontent">
-			<div layout="row" flex id="awardsdisplay">
-				<awardcard ng-repeat="award in awards" pic="app/images/blueribbon.jpg" description="{{ award.description }}" title="{{ award.title }}"></awardcard>				
-			</div>					
-		</div>
-	</md-content>
-	<md-content id="newspaper" class="contentarea evencontent" flex>		
-		<div class="bodycontent">
-			<div id="newspaperwrapper" layout="row" flex>
-				<newspaper ng-repeat="newspaper in newspapers" title="newspaper.title " image="newspaper.fileName" description="newspaper.description">				
-				</newspaper>				
-			</div>			
-		</div>
-	</md-content>
-	<md-content id="requestapiece" class="contentarea oddcontent" flex>		
-		<div class="bodycontent" layout="column" flex style="text-align: center">
-			Igor Nasibyan will gladly create a shadow portrait for you. If interested, he will need the following. 
-			<div style="display: block; width: 300px; margin: 0 auto;">
-				<ol>
-					<li>This</li>
-					<li>That</li>
-					<li>Some of this</li>
-					<li>Some more of that</li>
-				</ol>
-			</div>			
-		</div>
-	</md-content>
-	<md-content id="contact" class="contentarea evencontent" flex>	
-		<div class="bodycontent" flex layout="row">
-			<div id="contact-card-wrap" class="center-children">
-				<md-card id="connect-card">
-					<md-card-title>
-						<md-card-title-text>
-							<span class="md-headline">Connect with Me</span>
-						</md-card-title-text>
-					</md-card-title>
-					<md-card-content>
-						<div layout="column" id="connect-info">	
-							<div id="connect-details">
-								<div>{{ contact.email }}</div>
-								<div>{{ contact.location }} </div>	
-							</div>				
-							<div layout="row">
-								<ul layout="row" id="socialMediaList">
-									<li class="socialMediaLink">
-										<a href="{{ contact.socialFacebook }}">
-											<img src="app/images/socialmedia/facebook.png">
-										</a>
-									</li>
-									<li class="socialMediaLink">
-										<a href="{{ contact.socialYouTube }}">
-											<img src="app/images/socialmedia/youtube.png">
-										</a>
-									</li>
-									<li class="socialMediaLink">
-										<a href="{{ contact.socialLinkedIn }}">
-											<img src="app/images/socialmedia/linkedin.png">
-										</a>
-									</li>
-									<li class="socialMediaLink">
-										<a href="{{ contact.socialTwitter }}">
-											<img src="app/images/socialmedia/twitter.png">
-										</a>
-									</li>						
-								</ul>
-							</div>
-						</div>
-					</md-card-content>
-				</md-card>
-			</div>					
-			<div id="mapcontainer">
-				Map Here.
-			</div>
-			
-		</div>
-	</md-content>
+	<video-section></video-section>
+	<art-collection-section></art-collection-section>
+	<awards-section></awards-section>
+	<newspapers-section></newspapers-section>
+	<request-section></request-section>
+	<contact-section></contact-section>
 	<anchor-link></anchor-link>
 </body>
 </html>
