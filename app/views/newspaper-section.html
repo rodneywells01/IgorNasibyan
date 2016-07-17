@@ -2,7 +2,10 @@
 	<div class="bodycontent">
 		<div id="newspaperwrapper" layout="row" flex>
 			<newspaper ng-repeat="newspaper in newspapers" title="newspaper.title " image="newspaper.fileName" description="newspaper.description">				
-			</newspaper>				
+			</newspaper>	
+			<div style="display:flex; align-items:center;">
+				<add-card ng-if="$root.loggedIn" ></add-card>      	
+			</div>		    	
 		</div>			
 	</div>
 </md-content>

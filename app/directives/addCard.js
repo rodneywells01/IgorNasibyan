@@ -1,6 +1,6 @@
-angular.module('IgorNasibyan').directive("editButton", function($rootScope) {
+angular.module('IgorNasibyan').directive("addCard", function($rootScope) {
 	return {
-		templateUrl: 'app/directives/templates/edit-button.html',
+		templateUrl: 'app/directives/templates/add-card.html',
 		restrict: 'E', 
 		scope: {
 			editFn: '&'

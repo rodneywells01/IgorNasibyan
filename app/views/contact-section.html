@@ -2,6 +2,8 @@
 	<div class="bodycontent" flex layout="row">
 		<div id="contact-card-wrap" class="center-children">
 			<md-card id="connect-card">
+				<edit-button edit-fn="edit()"></edit-button>
+
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">Connect with Me</span>
@@ -11,7 +13,7 @@
 					<div layout="column" id="connect-info">	
 						<div id="connect-details">
 							<div>{{ contact.email }}</div>
-							<div>{{ contact.location }} </div>	
+							<div>{{ contact.location }}</div>	
 						</div>				
 						<div layout="row">
 							<ul layout="row" id="socialMediaList">

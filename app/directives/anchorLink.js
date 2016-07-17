@@ -1,4 +1,4 @@
-angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $location) {
+angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $location, $rootScope) {
 	return {
 		templateUrl: 'app/directives/templates/anchor-link.html',
 		restrict: 'E', 
@@ -8,6 +8,10 @@ angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $
 				$location.hash(hash); 
 				$anchorScroll();
 			};
+
+			scope.login = function() {
+				$rootScope.loggedIn = !$rootScope.loggedIn;
+			}
 
 		}
 	};

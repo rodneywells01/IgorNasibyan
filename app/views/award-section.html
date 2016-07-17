@@ -5,6 +5,9 @@
 		    <md-grid-tile ng-repeat="award in awards" md-rowspan="1" md-colspan="1">
 		    	<awardcard  pic="app/images/blueribbon.jpg" description="{{ award.description }}" title="{{ award.title }}"></awardcard>	   
 		    </md-grid-tile>
+		    <md-grid-tile md-rowspan="1" md-colspan="1" ng-if="$root.loggedIn">
+		    	<add-card></add-card>		      
+		    </md-grid-tile>
 	  	</md-grid-list>				
 	</div>
 </md-content>

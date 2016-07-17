@@ -2,6 +2,10 @@
 	justify-content: space-around;	
 }
 
+#contact {
+	display: flex;
+}
+
 #contact-card-wrap {
 	/*padding: 20px;*/
 	box-sizing: border-box;

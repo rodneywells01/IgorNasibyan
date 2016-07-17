@@ -8,8 +8,6 @@ body {
 	/*font-family: 'Farsan', cursive;*/
 	/*font-family: 'Shadows Into Light', cursive;*/
 	/*font-family: 'Scope One', serif;*/
-
-
 	/* Favorite - Poiret One */
 }
 
@@ -42,16 +40,6 @@ body {
 	text-align: center;
 }
 
-.smallpic {	
-/*	width: 10%;
-	height: 50%;*/
-}
-
-.largepic {
-	/*width: 30%;
-	height: 100%;*/
-}
-
 .standard-button {
 	width: 200px;
 	height: 80px;
@@ -75,8 +63,6 @@ body {
 	background-repeat: no-repeat;
 }
 
-
-
 #mapcontainer {
 	display: block;
 	width: 400px;
@@ -97,11 +83,11 @@ body {
 
 #socialMediaList {
 	padding: 0;
+	margin-bottom: 0;
 }
 
 .center-children {
 	align-items: center;
-	/*justify-content: center;*/
 	display: flex;
 }
 
@@ -111,4 +97,14 @@ body {
 	position: absolute;
 	top: 0;
 	right: 0;
+	transform: translate(50%, -50%);
+}
+
+.add-button {
+    display: flex;
+    justify-content: center;      
+}
+
+md-card {
+	position: relative;
 }

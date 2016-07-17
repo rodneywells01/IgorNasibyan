@@ -36,3 +36,7 @@ art-piece {
 	max-width: 250px;
 	cursor: pointer;
 }
+
+.artwork-inner-container {
+	position: relative;
+}

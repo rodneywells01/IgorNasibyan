@@ -6,6 +6,9 @@
 	    <md-grid-tile ng-repeat="artFile in artFiles" md-rowspan="1" md-colspan="1" ng-class="tile.background">
 	    	<art-piece imageName='artFile'></art-piece>		      
 	    </md-grid-tile>
+	    <md-grid-tile md-rowspan="1" md-colspan="1" ng-if="$root.loggedIn">
+	    	<add-card></add-card>		      
+	    </md-grid-tile>
   	</md-grid-list>
 	<div id="artheadbar" flex> 
 		<md-button ng-show="!expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
