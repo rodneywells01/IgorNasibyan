@@ -12,6 +12,11 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 				});
 			}
 
+			$scope.determineCols = function(desiredCols)  {
+				return desiredCols >= $scope.awards.length ? 
+					$scope.awards.length : desiredCols;
+			}
+
 			fetchAwards();
 		}
 	};

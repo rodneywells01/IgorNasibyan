@@ -1,7 +1,10 @@
 <md-content id="awards" class="contentarea oddcontent" flex>
 	<div class="bodycontent">
-		<div layout="row" flex id="awardsdisplay">
-			<awardcard ng-repeat="award in awards" pic="app/images/blueribbon.jpg" description="{{ award.description }}" title="{{ award.title }}"></awardcard>				
-		</div>					
+		<md-grid-list id="artwork-grid-list" 
+		md-cols="{{ determineCols(2) }}" md-cols-md="{{ determineCols(3) }}" md-cols-lg="{{ determineCols(4) }}" md-cols-gt-lg="{{ determineCols(5) }}" md-row-height="300px" md-gutter="8px">
+		    <md-grid-tile ng-repeat="award in awards" md-rowspan="1" md-colspan="1">
+		    	<awardcard  pic="app/images/blueribbon.jpg" description="{{ award.description }}" title="{{ award.title }}"></awardcard>	   
+		    </md-grid-tile>
+	  	</md-grid-list>				
 	</div>
 </md-content>

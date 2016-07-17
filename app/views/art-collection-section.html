@@ -1,5 +1,5 @@
 <md-content id="artcollection" class="contentarea evencontent" ng-class="{expanded: expandedClass}" ng-controller="ArtController">
-	<md-grid-list id="artwork-grid-list" ng-show="expandedClass" 
+	<md-grid-list id="artwork-grid-list" ng-show="showArt" 
 	md-cols="1" md-cols-sm="2" md-cols-md="3"
 	md-cols-lg="4" md-cols-gt-lg="5" 
 	md-row-height="300px" md-gutter="8px">
@@ -9,6 +9,6 @@
   	</md-grid-list>
 	<div id="artheadbar" flex> 
 		<md-button ng-show="!expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
-		<md-button ng-show="expandedClass" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">View the Collection</md-button>
+		<md-button ng-show="showArt" class="md-raised view-collection-button" style="color: grey;" ng-click="displayArt()">Hide the Collection</md-button>
 	</div>
 </md-content>

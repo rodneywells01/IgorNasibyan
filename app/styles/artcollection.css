@@ -6,14 +6,12 @@
 	display: flex;
 	align-items: center;
   	justify-content: center;
-  	transition: all .5s ease-in-out;
-  	height: 200px;
-  	min-height: 0px;
+  	transition: height .5s ease-in-out;  	  
   	background-color: darkgrey;
 }
 
 .expanded {
-	height: 1200px !important;
+	min-height: 1200px !important;
 	z-index: 20;
 	padding: 0;	
 	display: block !important;
@@ -37,8 +35,4 @@ art-piece {
 	max-height: 300px;
 	max-width: 250px;
 	cursor: pointer;
-}
-
-.view-collection-button {
-
 }
