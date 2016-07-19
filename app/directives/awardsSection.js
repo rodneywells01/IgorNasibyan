@@ -2,8 +2,6 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 	return {
 		templateUrl: 'app/views/award-section.html',
 		restrict: 'E', 
-		scope: {			
-		},
 		link: function($scope, elem, attr) { 
 			function fetchAwards() {
 				$scope.awards = [];
@@ -14,7 +12,7 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 
 			$scope.determineCols = function(desiredCols)  {
 				return desiredCols >= $scope.awards.length ? 
-					$scope.awards.length : desiredCols;
+					$scope.awards.length || 1 : desiredCols;
 			}
 
 			fetchAwards();
