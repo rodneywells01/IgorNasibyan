@@ -17,6 +17,7 @@ app.controller('PromptController', function($scope, $rootScope, $mdPanel, NodeCo
 			NodeConnection.updateDBValue($rootScope.servicebackend, $scope.elemData).then(function(data) {
 				console.log("Update successful!");
 				console.log(data);
+				$scope.closeDialog();
 			});
 		}
 	};
@@ -49,6 +50,7 @@ app.controller('PromptController', function($scope, $rootScope, $mdPanel, NodeCo
 	}
 
 	$scope.closeDialog = function(){
-	  	this._mdPanelRef && this._mdPanelRef.close();
+		console.log("Closing dialog!");
+	  	mdPanelRef && mdPanelRef.close();
 	}
 });

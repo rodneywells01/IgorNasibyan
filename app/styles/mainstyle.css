@@ -108,3 +108,8 @@ body {
 md-card {
 	position: relative;
 }
+
+.align-center {
+	justify-content: center;
+	display: flex;
+}

@@ -6,3 +6,7 @@
 #prompt-content > md-input-container {
 	width: 100%;
 }
+
+#prompt-button-container {
+	width: 50%;
+}
