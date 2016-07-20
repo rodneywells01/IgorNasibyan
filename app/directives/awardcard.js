@@ -1,4 +1,4 @@
-angular.module('IgorNasibyan').directive("awardcard", function() {
+angular.module('IgorNasibyan').directive("awardcard", function($rootScope) {
 	return {
 		templateUrl: 'app/directives/templates/awardcard.html',
 		restrict: 'E', 
@@ -6,9 +6,19 @@ angular.module('IgorNasibyan').directive("awardcard", function() {
 			scope.imagePath = attr.pic; 
 			scope.title = attr.title; 
 			scope.description = attr.description;
+			scope.id = attr.id;
 
+			scope.awardInfo = {
+				'title' : scope.title,
+				'description': scope.description,
+				'file': scope.file,
+				'id': scope.id
+			};
+			
 			scope.edit = function() {
-				console.log("Edit!");
+				// Display prompt with info. 
+				$rootScope.setPromptConfig('titledescfiles.html', 'Award', false, scope.awardInfo);
+				$rootScope.displayPrompt();
 			}
 		}
 	};

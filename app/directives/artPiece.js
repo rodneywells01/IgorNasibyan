@@ -4,7 +4,6 @@ angular.module('IgorNasibyan').directive("artPiece", function() {
 		scope: { imagename : '='},
 		restrict: 'E', 
 		link: function($scope, elem, attr) { 
-			console.log($scope.imagename);
 			$scope.imagePath = "app/images/artwork/" + $scope.imagename;
 		}
 	};

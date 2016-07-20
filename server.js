@@ -2,6 +2,9 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert'); 
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+console.log(bodyParser);
+
 
 /* Begin Schema/Model Definition */
 var contactSchema = mongoose.Schema({
@@ -52,6 +55,11 @@ app.use(function(req, res, next) {
 	next();
 });
 app.use(express.static("./")); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+// app.use(express.json()); 
 app.use(cors());
 
 // BEGIN DATA ROUTES. 
@@ -85,6 +93,51 @@ app.get('/artcollection', function(req,res) {
 	console.log(fileNames)
 	res.json(fileNames);
 });
+
+// EDIT ROUTES
+app.post('/updateNewspaper', function(req,res) {
+	NewspaperModel.findById(req.body.id, function(err, element) {		
+		updateElement(element, err, req.body, res);
+	})
+});
+
+app.post('/updateAward', function(req,res) {
+	console.log("Made it to server!");
+	AwardsModel.findById(req.body.id, function(err, element) {		
+		updateElement(element, err, req.body, res);
+	})
+});
+
+app.post('/updateContact', function(req,res) {
+	ContactModel.findById(req.body.id, function(err, element) {		
+		updateElement(element, err, req.body, res);
+	})
+});
+
+
+function updateElement(element, err, data, res) {
+	if (err) { res.json(err); }
+
+	// Update all keys
+	Object.keys(data).forEach(function(key) {
+		element[key] = data[key];
+	});
+	
+	// Save element. 
+	element.save(function(err) {
+		if(err) { res.json(err); }
+		res.json(element); 
+	});	
+}
+
+function deleteElement(element, err, res) {
+
+}
+
+function insertElement(element, err, res) {
+
+}
+		
 
 /* END DATA ROUTES */
 

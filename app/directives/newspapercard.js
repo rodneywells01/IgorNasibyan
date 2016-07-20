@@ -1,16 +1,26 @@
-angular.module('IgorNasibyan').directive("newspaper", function() {
+angular.module('IgorNasibyan').directive("newspaper", function($rootScope) {
 	return {
 		templateUrl: 'app/directives/templates/newspapercard.html',
 		restrict: 'E', 
 		scope: {
 			title: '=',
 			image: '=',
-			description: '='
+			description: '=',
+			id: '='
 		},
 		link: function(scope, elem, attr) { // Not sure if right order. 
-			// scope.title = scope.newspapers[scope.index].title; 
-			// scope.image = scope.newspapers[scope.index].image; 
-			// scope.description = scope.newspapers[scope.index].description;
+			scope.elemData = {
+				title: scope.title,
+				image: scope.image, 
+				description: scope.description, 
+				id: scope.id, 
+			};
+
+			scope.edit = function() {
+				// Display prompt with info. 
+				$rootScope.setPromptConfig('titledescfiles.html', 'Newspaper', false, scope.elemData);
+				$rootScope.displayPrompt();
+			}
 		}
 	};
 });

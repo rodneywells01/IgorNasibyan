@@ -5,10 +5,7 @@ app.service('NodeConnection', function($http, $q) {
 	};
 
 	this.getImageList = function() {
-		console.log("here");
 		var data = httpGet('artcollection');
-		console.log("Here it is!");
-		console.log(data);
 		return data;
 	};
 
@@ -22,6 +19,20 @@ app.service('NodeConnection', function($http, $q) {
 
 	this.getAwards = function() {
 		return httpGet('/awards'); 
+	}
+
+	this.addNewValue = function(url, data) {
+		return httpPost('/add' + url, data);
+	}
+
+	this.insertDBValue = function(area, data) {
+		var url = "/insert" + area; 
+		return httpPost(area, data);
+	}; 
+
+	this.updateDBValue = function(area, data) {
+		var url = "/update" + area; 
+		return httpPost(url, data);
 	}
 
 	function httpGetReq(req) {
@@ -47,4 +58,25 @@ app.service('NodeConnection', function($http, $q) {
 
         return deferred.promise;
 	}
+
+	function httpPost(url, data) {
+		var deferred = $q.defer();
+		var req = {
+			method: 'POST', 
+			url: url, 
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		};
+		$http(req).success(function (response) {
+			deferred.resolve(response);
+		}).error(function (reason) {
+			deferred.reject(reason);
+		});
+
+		return deferred.promise;
+	}
+
+
 });

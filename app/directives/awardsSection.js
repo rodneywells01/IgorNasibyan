@@ -6,7 +6,8 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 			function fetchAwards() {
 				$scope.awards = [];
 				NodeConnection.getAwards().then(function(data) {
-					$scope.awards = data;
+					$scope.awards = data;					
+					console.log($scope.awards);
 				});
 			}
 

@@ -1,0 +1,21 @@
+<md-card id="prompt-card">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			Edit {{ $root.servicebackend }}
+		</div>
+	</md-toolbar>	
+	<md-card-content id="prompt-content">
+		<md-input-container>
+	        <label>Title</label>
+	        <input ng-model="elemData.title">
+      	</md-input-container>	
+      	<md-input-container>
+	        <label>Description</label>
+	        <input ng-model="elemData.description">
+      	</md-input-container>   
+      	<input id="fileUpload" type="file" hide>
+      	<md-button ng-click="setFile()" class="md-raised">Upload Image</md-button>		
+      	<md-button ng-click="displayFileInfo()" class="md-raised">Display Info</md-button>		
+      	<md-button ng-click="makeBackendRequest()" class="md-raised">Backend Request</md-button>	
+	</md-card-content>
+</md-card>
