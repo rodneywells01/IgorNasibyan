@@ -7,7 +7,6 @@ app.controller('PromptController', function($scope, $rootScope, $mdPanel, NodeCo
 	};
 
 	$scope.elemData = $rootScope.promptData;
-	console.log("Set scope elem data!");
 
 	$scope.makeBackendRequest = function() {
 		if($rootScope.backendAdd) {
@@ -34,12 +33,12 @@ app.controller('PromptController', function($scope, $rootScope, $mdPanel, NodeCo
             $scope.elemData.file = $scope.fileInput.files[0];
             $scope.$apply();
         };     
-	}
+	};
 
 	$scope.displayFileInfo = function() {
 		console.log($scope.elemData.file);
 		console.log($scope.elemData);
-	}
+	};
 
 	$scope.dbElemInsert = function (area) {
 		console.log("Inserting..." + area);
@@ -47,10 +46,10 @@ app.controller('PromptController', function($scope, $rootScope, $mdPanel, NodeCo
 			console.log("Insertion successful!");
 			console.log(data); 
 		});
-	}
+	};
 
 	$scope.closeDialog = function(){
 		console.log("Closing dialog!");
 	  	mdPanelRef && mdPanelRef.close();
-	}
+	};
 });

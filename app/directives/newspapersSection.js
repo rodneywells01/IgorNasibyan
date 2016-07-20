@@ -2,8 +2,6 @@ angular.module('IgorNasibyan').directive("newspapersSection", function(NodeConne
 	return {
 		templateUrl: 'app/views/newspaper-section.html',
 		restrict: 'E', 
-		scope: {			
-		},
 		link: function($scope, elem, attr) { 
 			$scope.newspapers = [];
 			function fetchNewsPapers() {				
