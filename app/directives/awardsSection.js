@@ -1,4 +1,4 @@
-angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnection) {
+angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnection, $rootScope) {
 	return {
 		templateUrl: 'app/views/award-section.html',
 		restrict: 'E', 
@@ -12,9 +12,14 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 			}
 
 			$scope.determineCols = function(desiredCols)  {
-				return desiredCols >= $scope.awards.length ? 
-					$scope.awards.length || 1 : desiredCols;
-			}
+				var loggedInExtra = 0;
+				if ($rootScope.loggedIn) {
+					loggedInExtra += 1;
+				}
+
+				return (desiredCols >= $scope.awards.length ?  
+					$scope.awards.length || 1 : desiredCols) + loggedInExtra;
+			};
 
 			fetchAwards();
 		}

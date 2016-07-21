@@ -24,6 +24,8 @@ body {
 .contentarea {
 	/*border-bottom: 1px solid black;*/
 	padding: 20px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 	min-height: 300px;
 }
 

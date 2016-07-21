@@ -1,6 +1,9 @@
 angular.module('IgorNasibyan').directive("awardcard", function($rootScope) {
 	return {
 		templateUrl: 'app/directives/templates/awardcard.html',
+		scope: {
+			editFn: '&'
+		},
 		restrict: 'E', 
 		link: function(scope, elem, attr) { // Not sure if right order. 
 			scope.imagePath = attr.pic; 
