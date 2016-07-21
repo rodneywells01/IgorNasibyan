@@ -37,6 +37,7 @@ module.exports = function(app, models) {
 	});
 
 	app.post('/updateAward', function(req,res) {
+		console.log(req.body);
 		models.AwardsModel.findById(req.body.id, function(err, element) {		
 			updateElement(element, err, req.body, res);
 		})
