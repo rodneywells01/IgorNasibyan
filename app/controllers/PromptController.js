@@ -1,55 +1,63 @@
-app.controller('PromptController', function($scope, $rootScope, $mdPanel, NodeConnection, $rootScope, NodeConnection, mdPanelRef) {	
-	$scope.fileInfo = {
-		'title': '',
-		'description': '',
-		'file': '',
-		'id': ''
-	};
+app.controller('PromptController', function($scope, PromptService, NodeConnection, mdPanelRef) {	
+	$scope.fileInput = document.getElementById('fileUpload');
+	$scope.promptData = PromptService.promptData;
+	$scope.servicebackend = PromptService.servicebackend;
+	var updateData = "";
 
-	$scope.elemData = $rootScope.promptData;
-
+	// Send a request using the Node Connection. 	
 	$scope.makeBackendRequest = function() {
-		if($rootScope.backendAdd) {
+		if(PromptService.backendAdd) {
 			console.log("Add element! - Not functioning yet.");
 			// $scope.dbElemInsert($rootScope.servicebackend);
 		} else {
-			NodeConnection.updateDBValue($rootScope.servicebackend, $scope.elemData).then(function(data) {
-				console.log("Update successful!");
-				console.log(data);
-				$scope.closeDialog();
-			});
+			dbElemUpdate($scope.servicebackend);
 		}
 	};
-
-	$scope.fileInput = document.getElementById('fileUpload');
 	
-	$scope.setFile = function() {
-		var uploadInput = document.getElementById('fileUpload').click();
-        $scope.fileInput = document.getElementById('fileUpload');
-        document.getElementById('fileUpload').onchange = function (e) {
+	$scope.setFile = function() {		        
+        $scope.fileInput.click();
+        $scope.fileInput.onchange = function (e) {
             // Update file input object. 
             console.log("File change!");
             console.log($scope.fileInput);
-            $scope.elemData.file = $scope.fileInput.files[0];
+            PromptService.promptData.file = $scope.fileInput.files[0];
             $scope.$apply();
         };     
 	};
 
+	// DEBUG
 	$scope.displayFileInfo = function() {
-		console.log($scope.elemData.file);
-		console.log($scope.elemData);
+		console.log(PromptService.promptData);
 	};
 
-	$scope.dbElemInsert = function (area) {
+	// INSERT
+	function dbElemInsert (area) {
 		console.log("Inserting..." + area);
-		NodeConnection.insertElement(area, $scope.elemData).then(function(data) {
+		NodeConnection.insertElement(area, PromptService.promptData).then(function(data) {
 			console.log("Insertion successful!");
-			console.log(data); 
+			console.log(data);
+			updateData = data; 
+			$scope.closeDialog();
 		});
-	};
+	}
 
+	// UPDATE
+	function dbElemUpdate(area) {
+		console.log("Updaing..." + area); 
+		NodeConnection.updateDBValue(area, PromptService.promptData).then(function(data) {
+			console.log("Update successful!");
+			console.log(data); 
+			updateData = data;
+			$scope.closeDialog();
+		});
+	}
+
+	// Close dialog
 	$scope.closeDialog = function(){
 		console.log("Closing dialog!");
 	  	mdPanelRef && mdPanelRef.close();
+
+	  	// Refresh element.
+	  	PromptService.updateOriginal($scope.promptData);
 	};
 });

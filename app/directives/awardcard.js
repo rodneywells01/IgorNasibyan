@@ -1,27 +1,25 @@
-angular.module('IgorNasibyan').directive("awardcard", function($rootScope) {
+angular.module('IgorNasibyan').directive("awardcard", function($rootScope, PromptService) {
 	return {
 		templateUrl: 'app/directives/templates/awardcard.html',
 		scope: {
-			editFn: '&'
+			editFn: '&',
+			elementData: '=elementdata'
 		},
 		restrict: 'E', 
-		link: function(scope, elem, attr) { // Not sure if right order. 
-			scope.imagePath = attr.pic; 
-			scope.title = attr.title; 
-			scope.description = attr.description;
-			scope.id = attr.id;
-
+		link: function(scope, elem, attr) {
 			scope.awardInfo = {
-				'title' : scope.title,
-				'description': scope.description,
-				'file': scope.file,
-				'id': scope.id
+				'title' : scope.elementData.title,
+				'description': scope.elementData.description,
+				'file': 'app/images/award/' + scope.elementData.fileName,
+				'id': scope.elementData._id
 			};
-			
+
+			var awardInfoCopy = scope.awardInfo;
+
+			// Display prompt with info. 		
 			scope.edit = function() {
-				// Display prompt with info. 
-				$rootScope.setPromptConfig('titledescfiles.html', 'Award', false, scope.awardInfo);
-				$rootScope.displayPrompt();
+				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, awardInfoCopy, elem);
+				PromptService.displayPrompt();
 			}
 		}
 	};

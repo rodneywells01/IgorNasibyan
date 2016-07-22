@@ -1,12 +1,13 @@
 <md-card class="awardcard" md-whiteframe="5" layout="column" flex>
 	<edit-button edit-fn="edit()"></edit-button>
-    <img ng-src="{{imagePath}}" class="md-card-image"/>
+    <!-- <img ng-src="{{ awardInfo.file}}" class="md-card-image"/> -->
+    <img src="app/images/blueribbon.jpg">
 	<md-card-title>        
   		<md-card-title-text>
-        	<span class="md-headline">{{ title }}</span>     
+        	<span class="md-headline">{{ awardInfo.title }}</span>     
       	</md-card-title-text>     	      
     </md-card-title>      	
     <md-card-content>
-		{{ description }}
+		{{ awardInfo.description }}
 	</md-card-content>  
 </md-card>			

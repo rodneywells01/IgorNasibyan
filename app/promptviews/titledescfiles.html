@@ -1,17 +1,17 @@
 <md-card id="prompt-card">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			Edit {{ $root.servicebackend }}
+			Edit {{ servicebackend }}
 		</div>
 	</md-toolbar>	
 	<md-card-content id="prompt-content">
 		<md-input-container>
 	        <label>Title</label>
-	        <input ng-model="elemData.title">
+	        <input ng-model="promptData.title">
       	</md-input-container>	
       	<md-input-container>
 	        <label>Description</label>
-	        <textarea ng-model="elemData.description" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+	        <textarea ng-model="promptData.description" md-maxlength="150" rows="3" md-select-on-focus></textarea>
       	</md-input-container>   
       	<md-input-container class="align-center" flex>
       		<div id="prompt-button-container" layout="column"> 
