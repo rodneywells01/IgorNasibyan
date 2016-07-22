@@ -1,4 +1,4 @@
-angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnection, $rootScope) {
+angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnection, $rootScope, PromptService) {
 	return {
 		templateUrl: 'app/views/award-section.html',
 		restrict: 'E', 
@@ -20,6 +20,12 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 				return (desiredCols >= $scope.awards.length ?  
 					$scope.awards.length || 1 : desiredCols) + loggedInExtra;
 			};
+
+			$scope.add = function() {
+				$scope.newAward = {};
+				PromptService.setPromptConfig('titledescfiles.html', 'Award', true, $scope.newAward, elem);
+				PromptService.displayPrompt();
+			}
 
 			fetchAwards();
 		}

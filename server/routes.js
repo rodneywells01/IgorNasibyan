@@ -49,6 +49,12 @@ module.exports = function(app, models) {
 		})
 	});
 
+	// Insert Routes
+	app.post('/insertAward', function(req, res) {
+		insertElement(models.AwardsModel, req.body, res)
+	});
+
+
 	return app;
 }
 
@@ -71,6 +77,10 @@ function deleteElement(element, err, res) {
 
 }
 
-function insertElement(element, err, res) {
-
+function insertElement(Model, data, res) {
+	var document = new Model(data);	
+	document.save(function(err, document) {
+		if(err) { res.json(err) };
+		res.json(data); 
+	});
 }

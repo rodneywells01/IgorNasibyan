@@ -2,15 +2,16 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	$scope.fileInput = document.getElementById('fileUpload');
 	$scope.promptData = PromptService.promptData;
 	$scope.servicebackend = PromptService.servicebackend;
+	$scope.backendAdd = PromptService.backendAdd;
 	var updateData = "";
 
 	// Send a request using the Node Connection. 	
 	$scope.makeBackendRequest = function() {
 		if(PromptService.backendAdd) {
-			console.log("Add element! - Not functioning yet.");
-			// $scope.dbElemInsert($rootScope.servicebackend);
+			console.log("Add element! - Not functioning yet.");			
+			dbElemInsert();
 		} else {
-			dbElemUpdate($scope.servicebackend);
+			dbElemUpdate();
 		}
 	};
 	
@@ -31,9 +32,10 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	};
 
 	// INSERT
-	function dbElemInsert (area) {
-		console.log("Inserting..." + area);
-		NodeConnection.insertElement(area, PromptService.promptData).then(function(data) {
+	function dbElemInsert () {
+		console.log("Inserting..." + $scope.servicebackend);
+		console.log(PromptService.promptData);
+		NodeConnection.insertDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
 			console.log("Insertion successful!");
 			console.log(data);
 			updateData = data; 
@@ -42,9 +44,9 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	}
 
 	// UPDATE
-	function dbElemUpdate(area) {
-		console.log("Updaing..." + area); 
-		NodeConnection.updateDBValue(area, PromptService.promptData).then(function(data) {
+	function dbElemUpdate() {
+		console.log("Updaing..." + $scope.servicebackend); 
+		NodeConnection.updateDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
 			console.log("Update successful!");
 			console.log(data); 
 			updateData = data;

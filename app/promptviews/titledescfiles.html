@@ -1,7 +1,9 @@
 <md-card id="prompt-card">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			Edit {{ servicebackend }}
+			<div ng-show="!backendAdd">Edit {{ servicebackend }}</div>
+			<div ng-show="backendAdd">Add {{ servicebackend }}</div>
+		 	
 		</div>
 	</md-toolbar>	
 	<md-card-content id="prompt-content">

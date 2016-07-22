@@ -27,7 +27,7 @@ app.service('NodeConnection', function($http, $q) {
 
 	this.insertDBValue = function(area, data) {
 		var url = "/insert" + area; 
-		return httpPost(area, data);
+		return httpPost(url, data);
 	}; 
 
 	this.updateDBValue = function(area, data) {

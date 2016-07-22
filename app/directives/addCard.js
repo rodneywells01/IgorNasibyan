@@ -3,7 +3,7 @@ angular.module('IgorNasibyan').directive("addCard", function($rootScope) {
 		templateUrl: 'app/directives/templates/add-card.html',
 		restrict: 'E', 
 		scope: {
-			editFn: '&'
+			addFn: '&'
 		},
 		link: function(scope, elem, attr) { // Not sure if right order. 
 			$rootScope.loggedIn;
