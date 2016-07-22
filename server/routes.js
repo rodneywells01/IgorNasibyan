@@ -54,6 +54,13 @@ module.exports = function(app, models) {
 		insertElement(models.AwardsModel, req.body, res)
 	});
 
+	app.post('/insertNewspaper', function(req, res) {
+		insertElement(models.NewspaperModel, req.body, res)
+	});
+
+	// app.post('/insertNewsPaper', function(req, res) {
+	// 	insertElement(models.AwardsModel, req.body, res)
+	// });
 
 	return app;
 }
@@ -74,7 +81,6 @@ function updateElement(element, err, data, res) {
 }
 
 function deleteElement(element, err, res) {
-
 }
 
 function insertElement(Model, data, res) {

@@ -1,4 +1,4 @@
-angular.module('IgorNasibyan').directive("newspapersSection", function(NodeConnection) {
+angular.module('IgorNasibyan').directive("newspapersSection", function(NodeConnection, PromptService) {
 	return {
 		templateUrl: 'app/views/newspaper-section.html',
 		restrict: 'E', 
@@ -8,6 +8,12 @@ angular.module('IgorNasibyan').directive("newspapersSection", function(NodeConne
 				NodeConnection.getNewsPapers().then(function(data) {
 					$scope.newspapers = data;
 				});
+			}
+
+			$scope.add = function() {
+				$scope.newNewspaper = {};
+				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', true, $scope.newNewspaper, elem);
+				PromptService.displayPrompt();
 			}
 
 			fetchNewsPapers();

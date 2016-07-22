@@ -4,7 +4,7 @@
 			<newspaper ng-repeat="newspaper in newspapers" elementdata="newspaper">				
 			</newspaper>	
 			<div style="display:flex; align-items:center;">
-				<add-card ng-if="$root.loggedIn" ></add-card>
+				<add-card add-Fn="add()" ng-if="$root.loggedIn" ></add-card>
 			</div>		    	
 		</div>			
 	</div>
