@@ -14,11 +14,9 @@ angular.module('IgorNasibyan').directive("awardcard", function($rootScope, Promp
 				'id': scope.elementData._id
 			};
 
-			var awardInfoCopy = scope.awardInfo;
-
 			// Display prompt with info. 		
 			scope.edit = function() {
-				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, awardInfoCopy, elem);
+				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, scope.awardInfo, elem);
 				PromptService.displayPrompt();
 			}
 		}

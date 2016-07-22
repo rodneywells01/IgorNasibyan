@@ -1,26 +1,23 @@
-angular.module('IgorNasibyan').directive("newspaper", function($rootScope) {
+angular.module('IgorNasibyan').directive("newspaper", function($rootScope, PromptService) {
 	return {
 		templateUrl: 'app/directives/templates/newspapercard.html',
 		restrict: 'E', 
 		scope: {
-			title: '=',
-			image: '=',
-			description: '=',
-			id: '='
+			elementData: '=elementdata'
 		},
-		link: function(scope, elem, attr) { // Not sure if right order. 
-			scope.elemData = {
-				title: scope.title,
-				image: scope.image, 
-				description: scope.description, 
-				id: scope.id, 
+		link: function(scope, elem, attr) { // Not sure if right order. 		
+			scope.newspaperData = {
+				'title': scope.elementData.title,
+				'image': scope.elementData.fileName,
+				'description': scope.elementData.description,
+				'id': scope.elementData._id
 			};
-
+			
 			scope.edit = function() {
 				// Display prompt with info. 
-				$rootScope.setPromptConfig('titledescfiles.html', 'Newspaper', false, scope.elemData);
-				$rootScope.displayPrompt();
-			}
+				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', false, scope.newspaperData);
+				PromptService.displayPrompt();
+			};
 		}
 	};
 });
