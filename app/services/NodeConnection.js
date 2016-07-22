@@ -35,6 +35,12 @@ app.service('NodeConnection', function($http, $q) {
 		return httpPost(url, data);
 	}
 
+	this.deleteDBValue = function(area, id) {
+		var url = "/delete" + area; 
+		console.log(id);
+		return httpPost(url, { 'id': id });
+	}
+
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {

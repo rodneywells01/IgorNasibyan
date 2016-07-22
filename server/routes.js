@@ -58,9 +58,15 @@ module.exports = function(app, models) {
 		insertElement(models.NewspaperModel, req.body, res)
 	});
 
-	// app.post('/insertNewsPaper', function(req, res) {
-	// 	insertElement(models.AwardsModel, req.body, res)
-	// });
+	// Delete Routes
+	app.post('/deleteAward', function(req, res) {
+		deleteElement(models.AwardsModel, req.body.id, res)
+	});
+
+	app.post('/deleteNewspaper', function(req, res) {
+		console.log(req.body);
+		deleteElement(models.NewspaperModel, req.body.id, res)
+	});
 
 	return app;
 }
@@ -80,7 +86,12 @@ function updateElement(element, err, data, res) {
 	});	
 }
 
-function deleteElement(element, err, res) {
+function deleteElement(Model, id, res) {
+	console.log("In node! " + id);
+	Model.find({ _id: id}).remove(function(err, data) {
+		if (err) { res.json(err) }
+		res.json(data);
+	});
 }
 
 function insertElement(Model, data, res) {

@@ -21,8 +21,10 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 					$scope.awards.length || 1 : desiredCols) + loggedInExtra;
 			};
 
-			$scope.add = function() {
+			$scope.addAward = function() {
+				console.log($scope.newspapers);
 				$scope.newAward = {};
+				console.log("Awarrd!")
 				PromptService.setPromptConfig('titledescfiles.html', 'Award', true, $scope.newAward, elem);
 				PromptService.displayPrompt();
 			}

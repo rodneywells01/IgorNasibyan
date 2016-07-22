@@ -54,6 +54,16 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 		});
 	}
 
+	// DELETE 
+	$scope.deleteElement = function() {
+		if(confirm("Are you sure you want to delete this?")) {
+			NodeConnection.deleteDBValue($scope.servicebackend, PromptService.promptData.id).then(function(data) {
+				console.log("Delete succeeded!"); 
+				$scope.closeDialog();
+			});
+		}
+	};	
+
 	// Close dialog
 	$scope.closeDialog = function(){
 		console.log("Closing dialog!");
