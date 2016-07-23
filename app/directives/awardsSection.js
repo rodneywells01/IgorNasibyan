@@ -3,8 +3,8 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 		templateUrl: 'app/views/award-section.html',
 		restrict: 'E', 
 		link: function($scope, elem, attr) { 
-			function fetchAwards() {
-				$scope.awards = [];
+			$scope.awards = [];
+			function fetchAwards() {				
 				NodeConnection.getAwards().then(function(data) {
 					$scope.awards = data;					
 					console.log($scope.awards);
@@ -24,8 +24,9 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 			$scope.addAward = function() {
 				console.log($scope.newspapers);
 				$scope.newAward = {};
-				console.log("Awarrd!")
-				PromptService.setPromptConfig('titledescfiles.html', 'Award', true, $scope.newAward, elem);
+				console.log("Award!")
+				PromptService.setPromptConfig('titledescfiles.html', 
+						'Award', true, $scope.awards, elem);
 				PromptService.displayPrompt();
 			}
 

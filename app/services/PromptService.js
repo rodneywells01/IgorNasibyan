@@ -88,4 +88,9 @@ app.service('PromptService', function($mdPanel) {
 	    }
 	}
 
+	this.addElement = function(newData) {
+		console.log(this.promptDataOriginal);
+		this.promptDataOriginal.push(newData);
+	};
+
 });

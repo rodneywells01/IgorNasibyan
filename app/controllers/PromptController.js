@@ -34,12 +34,14 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	// INSERT
 	function dbElemInsert () {
 		console.log("Inserting..." + $scope.servicebackend);
-		console.log(PromptService.promptData);
 		NodeConnection.insertDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
 			console.log("Insertion successful!");
 			console.log(data);
 			updateData = data; 
 			$scope.closeDialog();
+
+			// Insert new elem. 
+			PromptService.addElement(data);
 		});
 	}
 
@@ -51,6 +53,9 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 			console.log(data); 
 			updateData = data;
 			$scope.closeDialog();
+
+		  	// Refresh element.
+	  		PromptService.updateOriginal($scope.promptData);
 		});
 	}
 
@@ -68,8 +73,5 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	$scope.closeDialog = function(){
 		console.log("Closing dialog!");
 	  	mdPanelRef && mdPanelRef.close();
-
-	  	// Refresh element.
-	  	PromptService.updateOriginal($scope.promptData);
 	};
 });
