@@ -11,8 +11,7 @@ angular.module('IgorNasibyan').directive("newspapersSection", function(NodeConne
 			}
 
 			$scope.add = function() {
-				$scope.newNewspaper = {};
-				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', true, $scope.newNewspaper, elem);
+				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', true, $scope.newspapers, elem);
 				PromptService.displayPrompt();
 			}
 
