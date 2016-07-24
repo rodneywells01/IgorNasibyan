@@ -72,6 +72,7 @@ app.service('PromptService', function($mdPanel) {
 		this.backendAdd = backendfunctionality;
 		this.promptData = shallowCopy(promptData);
 		this.promptDataOriginal = promptData;
+		console.log(promptData);
 		elementSelected = element;
 	};
 

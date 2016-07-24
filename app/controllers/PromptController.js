@@ -33,9 +33,7 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 
 	// INSERT
 	function dbElemInsert () {
-		console.log("Inserting..." + $scope.servicebackend);
 		NodeConnection.insertDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
-			console.log("Insertion successful!");
 			console.log(data);
 			updateData = data; 
 			$scope.closeDialog();
@@ -47,9 +45,7 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 
 	// UPDATE
 	function dbElemUpdate() {
-		console.log("Updaing..." + $scope.servicebackend); 
 		NodeConnection.updateDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
-			console.log("Update successful!");
 			console.log(data); 
 			updateData = data;
 			$scope.closeDialog();
