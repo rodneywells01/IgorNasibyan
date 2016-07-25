@@ -33,6 +33,7 @@ app.service('PromptService', function($mdPanel) {
 	this.promptData = {};
 	this.promptDataOriginal = {};
 	this.selectedId = 0; 
+	this.image = "";
 
 	function shallowCopy( original )  
 	{
@@ -53,18 +54,19 @@ app.service('PromptService', function($mdPanel) {
 	    return clone ;
 	}
 
-	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, promptData, selectedId) {
+	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, 
+		promptData, selectedId, image) {
 		config = {
 			animation: animation,
 			attachTo: angular.element(document.body), 
 			controller: 'PromptController', 
 			templateUrl: 'app/promptviews/' + templateUrl, 
-			panelClass: '', 
+			panelClass: 'full-art-prompt', 
 			position: position,
 			trapFocus: true, 
 			zIndex: 150, 
 			clickOutsideToClose: true, 
-			clickEscapeToClose: true, 
+			escapeToClose: true, 
 			hasBackdrop: true
 		};
 
@@ -80,9 +82,25 @@ app.service('PromptService', function($mdPanel) {
 
 		// Remove key to make promptData DataModel adherant, 
 		delete this.promptData.storageId;
-
-
 	};
+
+	this.setPromptConfigDisplay = function(templateUrl, image) {
+		config = {
+			animation: animation,
+			attachTo: angular.element(document.body), 
+			controller: 'PromptController', 
+			templateUrl: 'app/promptviews/' + templateUrl, 
+			panelClass: '', 
+			position: position,
+			trapFocus: true, 
+			zIndex: 150, 
+			clickOutsideToClose: false, 
+			escapeToClose: true, 
+			hasBackdrop: true
+		};
+
+		this.image = image;
+	}
 
 	this.updateOriginal = function(newData) {
 		this.promptDataOriginal[this.selectedId] = newData;

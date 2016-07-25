@@ -3,6 +3,8 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	$scope.promptData = PromptService.promptData;
 	$scope.servicebackend = PromptService.servicebackend;
 	$scope.backendAdd = PromptService.backendAdd;
+	$scope.image = PromptService.image;
+	console.log($scope.image);
 	var updateData = "";
 
 	// Send a request using the Node Connection. 	

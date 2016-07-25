@@ -10,3 +10,11 @@
 #prompt-button-container {
 	width: 50%;
 }
+
+.md-panel {
+	width: 80%;
+	height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

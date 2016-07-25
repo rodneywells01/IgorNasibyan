@@ -27,14 +27,13 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 
 			$scope.addAward = function() {
 				var newAward = { storageId: $scope.awards.length - 1};
-				PromptService.setPromptConfig('titledescfiles.html', 
-						'Award', true, $scope.awards, newAward);
+				PromptService.setPromptConfig('titledescfiles.html', 'Award', true, $scope.awards, newAward, null);
 				PromptService.displayPrompt();
 			}
 
 			// Display prompt with info. 		
 			$scope.editAward = function(award) {
-				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, $scope.awards, award.storageId);
+				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, $scope.awards, award.storageId, null);
 				PromptService.displayPrompt();
 			};
 
