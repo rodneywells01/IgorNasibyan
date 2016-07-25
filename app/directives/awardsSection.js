@@ -33,7 +33,7 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 			}
 
 			// Display prompt with info. 		
-			$scope.edit = function(award) {
+			$scope.editAward = function(award) {
 				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, $scope.awards, award.storageId);
 				PromptService.displayPrompt();
 			};
