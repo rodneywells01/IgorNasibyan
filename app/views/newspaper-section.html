@@ -1,7 +1,7 @@
-<md-content id="newspaper" class="contentarea evencontent" flex>		
+<md-content id="newspaper" class="contentarea evencontent" flex>
 	<div class="bodycontent">
 		<div id="newspaperwrapper" layout="row" flex>
-			<newspaper ng-repeat="newspaper in newspapers" elementdata="newspaper">				
+			<newspaper ng-repeat="newspaper in newspapers" elementdata="newspaper" edit-fn="edit(newspaper)">				
 			</newspaper>	
 			<div style="display:flex; align-items:center;">
 				<add-card add-Fn="add()" ng-if="$root.loggedIn" ></add-card>

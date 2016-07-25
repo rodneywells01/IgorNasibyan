@@ -13,12 +13,6 @@ angular.module('IgorNasibyan').directive("awardcard", function($rootScope, Promp
 				'file': 'app/images/award/' + scope.elementData.fileName,
 				'id': scope.elementData._id
 			};
-
-			// Display prompt with info. 		
-			scope.edit = function() {
-				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, scope.awardInfo, elem);
-				PromptService.displayPrompt();
-			}
 		}
 	};
 });

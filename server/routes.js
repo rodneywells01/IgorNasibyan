@@ -31,20 +31,27 @@ module.exports = function(app, models) {
 
 	// EDIT ROUTES
 	app.post('/updateNewspaper', function(req,res) {
-		models.NewspaperModel.findById(req.body.id, function(err, element) {		
+		models.NewspaperModel.findById(req.body._id, function(err, element) {		
 			updateElement(element, err, req.body, res);
 		})
 	});
 
 	app.post('/updateAward', function(req,res) {
 		console.log(req.body);
-		models.AwardsModel.findById(req.body.id, function(err, element) {		
+		console.log(req.body.id);
+		models.AwardsModel.findById(req.body._id, function(err, element) {	
+			console.log(req.body);
+			console.log(element);	
 			updateElement(element, err, req.body, res);
 		})
 	});
 
 	app.post('/updateContact', function(req,res) {
 		models.ContactModel.findById(req.body.id, function(err, element) {		
+			if (err) {
+				console.log("ERROR: Could not find element in DB!");
+				console.log(element);
+			}
 			updateElement(element, err, req.body, res);
 		})
 	});
@@ -64,7 +71,6 @@ module.exports = function(app, models) {
 	});
 
 	app.post('/deleteNewspaper', function(req, res) {
-		console.log(req.body);
 		deleteElement(models.NewspaperModel, req.body.id, res)
 	});
 
@@ -87,7 +93,6 @@ function updateElement(element, err, data, res) {
 }
 
 function deleteElement(Model, id, res) {
-	console.log("In node! " + id);
 	Model.find({ _id: id}).remove(function(err, data) {
 		if (err) { res.json(err) }
 		res.json(data);
@@ -96,7 +101,7 @@ function deleteElement(Model, id, res) {
 
 function insertElement(Model, data, res) {
 	var document = new Model(data);	
-	document.save(function(err, document) {
+	document.save(function(err, data) {
 		if(err) { res.json(err) };
 		res.json(data); 
 	});

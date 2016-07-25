@@ -7,6 +7,10 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 			function fetchAwards() {				
 				NodeConnection.getAwards().then(function(data) {
 					$scope.awards = data;					
+					var i = 0; 
+					for (i = 0; i < $scope.awards.length; i++) {
+						$scope.awards[i].storageId = i;
+					}
 					console.log($scope.awards);
 				});
 			}
@@ -22,13 +26,17 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 			};
 
 			$scope.addAward = function() {
-				console.log($scope.newspapers);
-				$scope.newAward = {};
-				console.log("Award!")
+				var newAward = { storageId: $scope.awards.length - 1};
 				PromptService.setPromptConfig('titledescfiles.html', 
-						'Award', true, $scope.awards, elem);
+						'Award', true, $scope.awards, newAward);
 				PromptService.displayPrompt();
 			}
+
+			// Display prompt with info. 		
+			$scope.edit = function(award) {
+				PromptService.setPromptConfig('titledescfiles.html', 'Award', false, $scope.awards, award.storageId);
+				PromptService.displayPrompt();
+			};
 
 			fetchAwards();
 		}

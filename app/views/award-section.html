@@ -3,7 +3,7 @@
 		<md-grid-list id="artwork-grid-list" 
 		md-cols="{{ determineCols(2) }}" md-cols-md="{{ determineCols(3) }}" md-cols-lg="{{ determineCols(4) }}" md-cols-gt-lg="{{ determineCols(5) }}" md-row-height="300px" md-gutter="8px">
 		    <md-grid-tile ng-repeat="award in awards" md-rowspan="1" md-colspan="1">
-		    	<awardcard elementdata = "award" ></awardcard>
+		    	<awardcard edit-fn="edit(award)" elementdata = "award" ></awardcard>
 		    </md-grid-tile>
 		    <md-grid-tile md-rowspan="1" md-colspan="1" ng-if="$root.loggedIn">
 		    	<add-card add-Fn="addAward()"></add-card>

@@ -32,7 +32,7 @@ app.service('PromptService', function($mdPanel) {
 	this.backendAdd = false;
 	this.promptData = {};
 	this.promptDataOriginal = {};
-	var elementSelected = "";
+	this.selectedId = 0; 
 
 	function shallowCopy( original )  
 	{
@@ -53,7 +53,7 @@ app.service('PromptService', function($mdPanel) {
 	    return clone ;
 	}
 
-	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, promptData, element) {
+	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, promptData, selectedId) {
 		config = {
 			animation: animation,
 			attachTo: angular.element(document.body), 
@@ -70,28 +70,40 @@ app.service('PromptService', function($mdPanel) {
 
 		this.servicebackend = servicebackend;
 		this.backendAdd = backendfunctionality;
-		this.promptData = shallowCopy(promptData);
+		if (this.backendAdd) {
+			this.promptData = {};		
+		} else {
+			this.promptData = shallowCopy(promptData[selectedId]);			
+		}		
 		this.promptDataOriginal = promptData;
-		console.log(promptData);
-		elementSelected = element;
+		this.selectedId = selectedId;
+
+		// Remove key to make promptData DataModel adherant, 
+		delete this.promptData.storageId;
+
+
 	};
 
-	this.getElementBeingEdited = function() {
-		return elementSelected;
-	}
-
 	this.updateOriginal = function(newData) {
-		var i , keys = Object.keys( this.promptDataOriginal ) ;
-
-	    for ( i = 0 ; i < keys.length ; i ++ )
-	    {
-	        this.promptDataOriginal[keys[i]] = newData[keys[i]];
-	    }
-	}
+		this.promptDataOriginal[this.selectedId] = newData;
+		this.promptDataOriginal[this.selectedId].storageId = this.selectedId;			
+	};
 
 	this.addElement = function(newData) {
+		// Affix ID and push to original array. 
 		console.log(this.promptDataOriginal);
-		this.promptDataOriginal.push(newData);
+		newData.storageId = this.promptDataOriginal.length;
+		this.promptDataOriginal.push(newData);		
+	};
+
+	this.removeElement = function(id) {
+		// Remove elment from original array and compress data.
+		this.promptDataOriginal.splice(id, 1);
+
+		// Compress original ids. 
+		for (; id < this.promptDataOriginal.length; id++) {
+			this.promptDataOriginal[id].storageId -= 1;
+		}
 	};
 
 });

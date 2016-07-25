@@ -8,7 +8,6 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	// Send a request using the Node Connection. 	
 	$scope.makeBackendRequest = function() {
 		if(PromptService.backendAdd) {
-			console.log("Add element! - Not functioning yet.");			
 			dbElemInsert();
 		} else {
 			dbElemUpdate();
@@ -28,46 +27,38 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 
 	// DEBUG
 	$scope.displayFileInfo = function() {
-		console.log(PromptService.promptData);
+		console.log(PromptService.promptDataOriginal);
 	};
 
 	// INSERT
 	function dbElemInsert () {
 		NodeConnection.insertDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
-			console.log(data);
 			updateData = data; 
 			$scope.closeDialog();
-
-			// Insert new elem. 
 			PromptService.addElement(data);
 		});
 	}
 
 	// UPDATE
-	function dbElemUpdate() {
-		NodeConnection.updateDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
-			console.log(data); 
-			updateData = data;
-			$scope.closeDialog();
-
-		  	// Refresh element.
-	  		PromptService.updateOriginal($scope.promptData);
+	function dbElemUpdate() {		
+		NodeConnection.updateDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {			
+			$scope.closeDialog();						
+	  		PromptService.updateOriginal(data);
 		});
 	}
 
 	// DELETE 
-	$scope.deleteElement = function() {
+	$scope.deleteElement = function() {		
 		if(confirm("Are you sure you want to delete this?")) {
-			NodeConnection.deleteDBValue($scope.servicebackend, PromptService.promptData.id).then(function(data) {
-				console.log("Delete succeeded!"); 
-				$scope.closeDialog();
+			NodeConnection.deleteDBValue($scope.servicebackend, PromptService.promptData._id).then(function(data) {
+				$scope.closeDialog();				
+				PromptService.removeElement(PromptService.selectedId);
 			});
 		}
 	};	
 
 	// Close dialog
 	$scope.closeDialog = function(){
-		console.log("Closing dialog!");
 	  	mdPanelRef && mdPanelRef.close();
 	};
 });
