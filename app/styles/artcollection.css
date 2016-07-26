@@ -57,6 +57,8 @@ art-piece {
     width: auto;
     position: relative;
     display: inline-block;
+    pointer-events: none;
+
 }
 
 .full-art-prompt {
