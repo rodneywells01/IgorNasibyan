@@ -4,7 +4,7 @@
 	md-cols-lg="4" md-cols-gt-lg="5" 
 	md-row-height="300px" md-gutter="8px">
 	    <md-grid-tile ng-repeat="artFile in artFiles" md-rowspan="1" md-colspan="1" ng-class="tile.background">
-	    	<art-piece imageName='artFile'></art-piece>		      
+	    	<art-piece imageName='artFile'></art-piece>      
 	    </md-grid-tile>
 	    <md-grid-tile md-rowspan="1" md-colspan="1" ng-if="$root.loggedIn">
 	    	<add-card></add-card>		      
