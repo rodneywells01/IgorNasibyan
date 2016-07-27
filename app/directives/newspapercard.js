@@ -9,7 +9,7 @@ angular.module('IgorNasibyan').directive("newspaper", function($rootScope, Promp
 		link: function(scope, elem, attr) { // Not sure if right order. 		
 			scope.newspaperData = {
 				'title': scope.elementData.title,
-				'image': scope.elementData.fileName,
+				'file': 'app/images/newspaper/' + scope.elementData.fileName,
 				'description': scope.elementData.description,
 				'id': scope.elementData._id
 			};
