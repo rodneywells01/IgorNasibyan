@@ -1,9 +1,9 @@
-app.controller('PromptController', function($scope, PromptService, NodeConnection, mdPanelRef) {	
-	$scope.fileInput = document.getElementById('fileUpload');
+app.controller('PromptController', function($scope, PromptService, NodeConnection, mdPanelRef, Upload) {	
 	$scope.promptData = PromptService.promptData;
 	$scope.servicebackend = PromptService.servicebackend;
 	$scope.backendAdd = PromptService.backendAdd;
 	$scope.image = PromptService.image;
+	$scope.file = "";
 	console.log($scope.image);
 	var updateData = "";
 
@@ -16,12 +16,16 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 		}
 	};
 	
-	$scope.setFile = function() {		        
+	$scope.setFile = function() {		
+		$scope.fileInput = document.getElementById('fileUpload');        
         $scope.fileInput.click();
         $scope.fileInput.onchange = function (e) {
+    		$scope.fileInput = document.getElementById('fileUpload');
+
             // Update file input object. 
             console.log("File change!");
             console.log($scope.fileInput);
+            // $scope.file = $scope.fileInput.files[0];
             PromptService.promptData.file = $scope.fileInput.files[0];
             $scope.$apply();
         };     
@@ -29,16 +33,18 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 
 	// DEBUG
 	$scope.displayFileInfo = function() {
-		console.log(PromptService.promptDataOriginal);
+		console.log($scope.file);
 	};
 
 	// INSERT
 	function dbElemInsert () {
-		NodeConnection.insertDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
-			updateData = data; 
-			$scope.closeDialog();
-			PromptService.addElement(data);
-		});
+		NodeConnection.uploadImage($scope.servicebackend, $scope.file).then(function(data) {
+			NodeConnection.insertDBValue($scope.servicebackend, PromptService.promptData).then(function(data) {
+				updateData = data; 
+				$scope.closeDialog();			
+				PromptService.addElement(data);
+			});
+		});		
 	}
 
 	// UPDATE

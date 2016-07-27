@@ -12,7 +12,9 @@
     "express": "^4.14.0",
     "material-design-icons": "^2.2.3",
     "mongodb": "^2.1.18",
-    "mongoose": "^4.5.2"
+    "mongoose": "^4.5.2",
+    "multer": "^1.1.0",
+    "ng-file-upload": "^12.0.4"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

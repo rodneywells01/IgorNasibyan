@@ -35,8 +35,7 @@ app.service('PromptService', function($mdPanel) {
 	this.selectedId = 0; 
 	this.image = "";
 
-	function shallowCopy( original )  
-	{
+	function shallowCopy( original ) {
 	    // First create an empty object with
 	    // same prototype of our original source
 	    var clone = Object.create( Object.getPrototypeOf( original ) ) ;

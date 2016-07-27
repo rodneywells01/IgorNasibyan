@@ -1,5 +1,4 @@
-app.service('NodeConnection', function($http, $q) {
-	// var server = "localhost:3000"; 
+app.service('NodeConnection', function($http, $q, Upload) {
 	this.getImage = function(imageName) {
 		return httpGet('app/images/artwork/')
 	};
@@ -15,31 +14,37 @@ app.service('NodeConnection', function($http, $q) {
 
 	this.getNewsPapers = function() {
 		return httpGet('/newspapers');
-	}
+	};
 
 	this.getAwards = function() {
 		return httpGet('/awards'); 
-	}
+	};
 
 	this.addNewValue = function(url, data) {
 		return httpPost('/add' + url, data);
-	}
+	};
 
 	this.insertDBValue = function(area, data) {
-		var url = "/insert" + area; 
+		var url = "/insert" + area; 		
 		return httpPost(url, data);
 	}; 
 
 	this.updateDBValue = function(area, data) {
 		var url = "/update" + area; 
 		return httpPost(url, data);
-	}
+	};
 
 	this.deleteDBValue = function(area, id) {
 		var url = "/delete" + area; 
 		console.log(id);
 		return httpPost(url, { 'id': id });
-	}
+	};
+
+	this.uploadImage = function(area, file) {
+		console.log(area);
+		var url = "/upload" + area;	
+		return httpPostFile(url, file);
+	};
 
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
@@ -80,6 +85,29 @@ app.service('NodeConnection', function($http, $q) {
 		}).error(function (reason) {
 			deferred.reject(reason);
 		});
+
+		return deferred.promise;
+	}
+
+	function httpPostFile(url, data) {
+		var deferred = $q.defer();
+
+		Upload.upload({
+			url: url,
+			data: {file: data}
+		}).then(function(response) {
+			if (response.data.error_code === 0) {
+				console.log("File upload successful!");
+			} else {
+				console.log("File upload error!");
+				console.log(response);
+			}	
+			deferred.resolve(response);			
+		}, function (reason) { //catch error
+            console.log('Error status: ' + reason.status);
+            $window.alert('Error status: ' + reason.status);
+            deferred.reject(reason);
+        });
 
 		return deferred.promise;
 	}

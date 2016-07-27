@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-module.exports = function(app, models) {
+module.exports = function(app, models, multer) {
 	// BEGIN DATA ROUTES. 
 	app.get("/contact-information", function(req, res) {
 		// Call res.json(data) to send back data. 	
@@ -74,7 +74,48 @@ module.exports = function(app, models) {
 		deleteElement(models.NewspaperModel, req.body.id, res)
 	});
 
+	// Upload Routes
+	app.post('/uploadAward', function(req, res) {
+		saveFile("award", req, res, multer);
+	});
+
+	app.post('/uploadNewspaper', function(req, res) {
+		console.log("Hit backend!");
+		saveFile("newspaper", req, res, multer);
+	});
+
+	app.post('/uploadArt', function(req, res) {
+		saveFile("artwork", req, res, multer);
+	});
+
 	return app;
+}
+
+function saveFile(area, req, res, multer) {
+	var uploader = multer({
+		storage: configureStorage(multer, area)
+	}).single('file');
+
+    uploader(req,res,function(err){
+        if(err){
+             res.json({error_code:1,err_desc:err});
+             return;
+        }
+         res.json({error_code:0,err_desc:null});
+    });
+} 
+
+function configureStorage(multer, location) {
+	return multer.diskStorage({
+		destination: function(req, file, cb) {			
+			cb(null, '../app/images/' + location + "/");
+		},
+		filename: function(req, file, cb) {
+			var datetimestamp = Date.now();
+			cb(null, file.originalname + '-' + datetimestamp
+				+ '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+		}
+	});
 }
 
 function updateElement(element, err, data, res) {
