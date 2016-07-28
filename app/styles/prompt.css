@@ -1,6 +1,12 @@
 #prompt-card {
 	width: 400px;
-	height: 552px;
+}
+
+#prompt-content {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #prompt-content > md-input-container {
@@ -21,4 +27,9 @@
 
 .md-panel._md-opaque-enter {
 	opacity: .9;
+}
+
+md-input-container > textarea {
+	max-height: 300px;
+	overflow-y: auto;
 }

@@ -5,8 +5,6 @@
           <span>{{ newspaperData.title }}</span>
         </h2>                      
     </md-toolbar>
-    <img src="{{ newspaperData.file }}">      
-    <md-card-content>
-		{{ newspaperData.description }}
-    </md-card-content>
+    <img ng-src="{{ newspaperData.file }}">      
+    <md-card-content class="newspaper-description">{{ '    "' + newspaperData.description + '"' }}</md-card-content>
 </md-card>			
