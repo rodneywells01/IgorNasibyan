@@ -17,7 +17,7 @@ angular.module('IgorNasibyan').directive("awardsSection", function(NodeConnectio
 
 			$scope.determineCols = function(desiredCols)  {
 				return (desiredCols >= $scope.awards.length ?  
-					$scope.awards.length || 1 : desiredCols) ;
+					$scope.awards.length  || 1 : desiredCols) ;
 			};
 
 			$scope.addAward = function() {

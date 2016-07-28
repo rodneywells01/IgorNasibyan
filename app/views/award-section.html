@@ -1,7 +1,7 @@
 <md-content id="awards" class="contentarea oddcontent" flex>
 	<div class="bodycontent">
 		<md-grid-list id="artwork-grid-list" md-cols-xs="{{ determineCols(1) }}" 
-		md-cols-sm="{{ determineCols(2) }}" md-cols-md="{{ determineCols(3) }}" md-cols-lg="{{ determineCols(4) }}" md-cols-gt-lg="{{ determineCols(5) }}" md-row-height="400px" md-gutter="8px">
+		md-cols-sm="{{ determineCols(1) }}" md-cols-md="{{ determineCols(2) }}" md-cols-lg="{{ determineCols(3) }}" md-cols-gt-lg="{{ determineCols(4) }}" md-row-height="400px" md-gutter="8px">
 		    <md-grid-tile ng-repeat="award in awards" md-rowspan="1" md-colspan="1">
 		    	<awardcard edit-fn="editAward(award)" elementdata = "award" ></awardcard>
 		    </md-grid-tile>
