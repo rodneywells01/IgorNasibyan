@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-module.exports = function(app, models, multer) {
+module.exports = function(app, models, multer, passport) {
 	// BEGIN DATA ROUTES. 
 	app.get("/contact-information", function(req, res) {
 		// Call res.json(data) to send back data. 	
@@ -29,14 +29,27 @@ module.exports = function(app, models, multer) {
 		res.json(fileNames);
 	});
 
+	app.get('/authfail', function(req, res) {
+		console.log("AUTHENTICATION FAILED!");
+		res.json({loginstate: false});
+	})
+
 	// EDIT ROUTES
-	app.post('/updateNewspaper', function(req,res) {
+	app.post('/updateNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req,res) {
 		models.NewspaperModel.findById(req.body._id, function(err, element) {		
 			updateElement(element, err, req.body, res);
 		})
 	});
 
-	app.post('/updateAward', function(req,res) {
+	app.post('/login', passport.authenticate('local', { failureRedirect: '/authfail' }), function(req, res) {
+		console.log(req.body);
+		console.log("login swag!");
+		res.json({loginstate: true});
+	});
+
+	app.post('/updateAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req,res) {
 		console.log(req.body);
 		console.log(req.body.id);
 		models.AwardsModel.findById(req.body._id, function(err, element) {	
@@ -46,7 +59,8 @@ module.exports = function(app, models, multer) {
 		})
 	});
 
-	app.post('/updateContact', function(req,res) {
+	app.post('/updateContact', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req,res) {
 		models.ContactModel.findById(req.body.id, function(err, element) {		
 			if (err) {
 				console.log("ERROR: Could not find element in DB!");
@@ -57,35 +71,42 @@ module.exports = function(app, models, multer) {
 	});
 
 	// Insert Routes
-	app.post('/insertAward', function(req, res) {
-		insertElement(models.AwardsModel, req.body, res)
+	app.post('/insertAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			insertElement(models.AwardsModel, req.body, res)
 	});
 
-	app.post('/insertNewspaper', function(req, res) {
-		insertElement(models.NewspaperModel, req.body, res)
+	app.post('/insertNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			insertElement(models.NewspaperModel, req.body, res)
 	});
 
 	// Delete Routes
-	app.post('/deleteAward', function(req, res) {
-		deleteElement(models.AwardsModel, req.body.id, res)
+	app.post('/deleteAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			deleteElement(models.AwardsModel, req.body.id, res)
 	});
 
-	app.post('/deleteNewspaper', function(req, res) {
-		deleteElement(models.NewspaperModel, req.body.id, res)
+	app.post('/deleteNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			deleteElement(models.NewspaperModel, req.body.id, res)
 	});
 
 	// Upload Routes
-	app.post('/uploadAward', function(req, res) {
-		saveFile("award", req, res, multer);
+	app.post('/uploadAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			saveFile("award", req, res, multer);
 	});
 
-	app.post('/uploadNewspaper', function(req, res) {
-		console.log("Hit backend!");
+	app.post('/uploadNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			console.log("Hit backend!");
 		saveFile("newspaper", req, res, multer);
 	});
 
-	app.post('/uploadArt', function(req, res) {
-		saveFile("artwork", req, res, multer);
+	app.post('/uploadArt', passport.authenticate('local', { failureRedirect: '/authfail' }),
+		function(req, res) {
+			saveFile("artwork", req, res, multer);
 	});
 
 	return app;

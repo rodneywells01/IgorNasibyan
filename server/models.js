@@ -25,11 +25,23 @@ module.exports = function(mongoose) {
 	});
 	var AwardsModel = mongoose.model('Award', awardsSchema); 
 
+	var usersSchema = mongoose.Schema({
+		username: String,
+		password: String
+	});
+	var UserModel = mongoose.model('User', usersSchema);	
+
 	var models = {
 		'AwardsModel': AwardsModel,
 		'NewspaperModel': NewspaperModel,
-		'ContactModel': ContactModel
+		'ContactModel': ContactModel,
+		'UserModel': UserModel
 	};
+
+	var loginSchema = mongoose.Schema({
+		username: String, 
+		password: String
+	});
 
 	return models;
 }

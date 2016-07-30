@@ -1,0 +1,20 @@
+<md-card id="login-card">
+	<md-toolbar>
+		Admin Login
+	</md-toolbar>	
+	<md-card-content id="prompt-content">
+		<md-input-container>
+	        <label>Username</label>
+	        <input type="text" ng-model="username">
+      	</md-input-container>	
+      	<md-input-container>
+	        <label>Password</label>
+	        <input type="password" ng-model="password">
+      	</md-input-container>       
+      	<md-input-container class="align-center" flex>
+      		<div id="prompt-button-container" layout="column">
+		      	<md-button ng-click="login()" class="md-raised">Login</md-button>
+      		</div>	      	
+      	</md-input-container>      		
+	</md-card-content>
+</md-card>

@@ -8,7 +8,7 @@ app.service('PromptService', function($mdPanel) {
 	// animation.closeTo({top: 50%, left: 100%}); 
   	animation.closeTo({top:0, left:0});
 	animation.withAnimation($mdPanel.animation.SCALE); 
-	var config = {
+	this.config = {
 		animation: animation,
 		attachTo: angular.element(document.body), 
 		controller: 'PromptController', 
@@ -24,7 +24,7 @@ app.service('PromptService', function($mdPanel) {
 
 	// Present the configured prompt to the user. 
 	this.displayPrompt = function() {	
-		$mdPanel.open(config); 
+		$mdPanel.open(this.config); 
 	};
 
 	// Hold critical prompt information. 
@@ -50,12 +50,12 @@ app.service('PromptService', function($mdPanel) {
 	        ) ;
 	    }
 
-	    return clone ;
+	    return clone;
 	}
 
 	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, 
 		promptData, selectedId, image) {
-		config = {
+		this.config = {
 			animation: animation,
 			attachTo: angular.element(document.body), 
 			controller: 'PromptController', 
@@ -86,7 +86,7 @@ app.service('PromptService', function($mdPanel) {
 	this.setPromptConfigDisplay = function(templateUrl, image, elem) {
 		var animation = animateElementOrigin(elem);
 
-		config = {
+		this.config = {
 			animation: animation,
 			attachTo: angular.element(document.body), 
 			controller: 'PromptController', 
@@ -101,6 +101,22 @@ app.service('PromptService', function($mdPanel) {
 		};
 
 		this.image = image;
+	}
+
+	this.setPromptConfigMinimal = function(controller, templateUrl) {
+		this.config = {
+			animation: animation,
+			attachTo: angular.element(document.body), 
+			controller: controller, 
+			templateUrl: 'app/promptviews/' + templateUrl, 
+			panelClass: '', 
+			position: position,
+			trapFocus: true, 
+			zIndex: 150, 
+			clickOutsideToClose: true, 
+			escapeToClose: true, 
+			hasBackdrop: true
+		};
 	}
 
 	this.updateOriginal = function(newData) {

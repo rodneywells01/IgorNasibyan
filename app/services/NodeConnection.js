@@ -1,4 +1,4 @@
-app.service('NodeConnection', function($http, $q, Upload) {
+app.service('NodeConnection', function($http, $q, Upload, $rootScope) {
 	this.getImage = function(imageName) {
 		return httpGet('app/images/artwork/')
 	};
@@ -46,6 +46,15 @@ app.service('NodeConnection', function($http, $q, Upload) {
 		return httpPostFile(url, file);
 	};
 
+	this.login = function(username, password) {
+		var data = {
+			username: username,
+			password: password
+		};
+		var url = '/login';
+		return httpPost(url, data);
+	}
+
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {
@@ -72,6 +81,7 @@ app.service('NodeConnection', function($http, $q, Upload) {
 
 	function httpPost(url, data) {
 		var deferred = $q.defer();
+		appendAuth(data);		
 		var req = {
 			method: 'POST', 
 			url: url, 
@@ -91,7 +101,7 @@ app.service('NodeConnection', function($http, $q, Upload) {
 
 	function httpPostFile(url, data) {
 		var deferred = $q.defer();
-
+		appendAuth(data);
 		Upload.upload({
 			url: url,
 			data: {file: data}
@@ -112,5 +122,10 @@ app.service('NodeConnection', function($http, $q, Upload) {
 		return deferred.promise;
 	}
 
-
+	function appendAuth(data) {
+		if ($rootScope.credentials.username != '' && $rootScope.credentials.password != '') {
+			data.username = $rootScope.credentials.username;
+			data.password = $rootScope.credentials.password;	
+		}		
+	}
 });

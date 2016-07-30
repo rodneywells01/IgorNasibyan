@@ -1,6 +1,6 @@
 /* CHANGE */
 var modelName = 'Award';
-var numInsertions = 3;
+var numInsertions = 1;
 
 
 
@@ -23,19 +23,17 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error! '));
 db.once('open', function() {
 	var schema = mongoose.Schema({
-		title: String,
-		fileName: String,
-		description: String
+		username: String,
+		password: String
 	});
 
 
-	var Model = mongoose.model('Award', schema); 
+	var Model = mongoose.model('User', schema); 
 	var i = 0;
 	for (i = 0; i < numInsertions; i++ ) {
 		var document = new Model({
-			title: modelName + ' ' + i,
-			fileName: modelName + i + ".png",
-			description: "This is a test description " + i
+			username: "rodneywells01",
+			password: "justham9",			
 		});	
 
 		document.save(function(err, document) {

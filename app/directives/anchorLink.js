@@ -1,4 +1,4 @@
-angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $location, $rootScope) {
+angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $location, $rootScope, NodeConnection, PromptService) {
 	return {
 		templateUrl: 'app/directives/templates/anchor-link.html',
 		restrict: 'E', 
@@ -10,7 +10,13 @@ angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $
 			};
 
 			scope.login = function() {
-				$rootScope.loggedIn = !$rootScope.loggedIn;
+				if(!$rootScope.loggedIn) {
+					PromptService.setPromptConfigMinimal('LoginController', 'login-form.html');
+					PromptService.displayPrompt();
+				} else {
+					if(confirm("Are you sure you'd like to logout?"))
+						$rootScope.loggedIn = false;
+				}
 			}
 
 		}
