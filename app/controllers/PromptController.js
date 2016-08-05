@@ -3,7 +3,6 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	$scope.servicebackend = PromptService.servicebackend;
 	$scope.backendAdd = PromptService.backendAdd;
 	$scope.image = PromptService.image;
-	$scope.file = "";
 	var updateData = "";
 
 	// Send a request using the Node Connection. 	
@@ -16,8 +15,8 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	};
 	
 	$scope.setFile = function() {		
-		$scope.fileInput = document.getElementById('fileUpload');        
-        $scope.fileInput.click();
+		document.getElementById('fileUpload').click();        
+        // $scope.fileInput.click();
 	};
 
 	// DEBUG

@@ -20,7 +20,7 @@
       			<input id="fileUpload" type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" accept="image/*" hide>
 		      	<md-button ng-click="setFile()" class="md-raised">Upload Image</md-button>	
 		      	<!-- <md-button ng-click="displayFileInfo()" class="md-raised">Display Info</md-button>	 -->	
-		      	<md-button ng-click="deleteElement()" class="md-raised md-warn">DeleteItem</md-button>
+		      	<md-button ng-if="!backendAdd" ng-click="deleteElement()" class="md-raised md-warn">DeleteItem</md-button>
 		      	<md-button ng-click="makeBackendRequest()" class="md-raised">Save Changes</md-button>
       		</div>	      	
       	</md-input-container>      		
