@@ -81,7 +81,6 @@ app.service('NodeConnection', function($http, $q, Upload, $rootScope) {
 
 	function httpPost(url, data) {
 		var deferred = $q.defer();
-		appendAuth(data);		
 		var req = {
 			method: 'POST', 
 			url: url, 
@@ -101,7 +100,6 @@ app.service('NodeConnection', function($http, $q, Upload, $rootScope) {
 
 	function httpPostFile(url, data) {
 		var deferred = $q.defer();
-		appendAuth(data);
 		Upload.upload({
 			url: url,
 			data: {file: data}
@@ -120,12 +118,5 @@ app.service('NodeConnection', function($http, $q, Upload, $rootScope) {
         });
 
 		return deferred.promise;
-	}
-
-	function appendAuth(data) {
-		if ($rootScope.credentials.username != '' && $rootScope.credentials.password != '') {
-			data.username = $rootScope.credentials.username;
-			data.password = $rootScope.credentials.password;	
-		}		
 	}
 });

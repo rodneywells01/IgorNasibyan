@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var BasicStrategy = require('passport-http').BasicStrategy;
 
 // DB/Models/Routes
 var dbConnection = require('./dbConnection.js');
@@ -15,26 +15,24 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-passport.use(new LocalStrategy(
-	function(username, password, done){
-		console.log("Attempting Authentication");
-		console.log("Username: " + username);
-		console.log("Password: " + password);
-		models.UserModel.findOne({ username: username}, function(err, user) {			
-			console.log("Finished search!");
-			console.log(user);
-			if(err) {
-				console.log(err);
-				return done(err);
-			} else if (!user) {
-				return done(null, false); 
-			} else if (user.password != password) {
-				return done(null, false);
-			}
-			console.log("Success!");
-			return done(null, user);
-		});
-	}
+passport.use(new BasicStrategy(
+  function(username, password, done) {
+    console.log("Performing Basic Auth.");
+	models.UserModel.findOne({ username: username}, function(err, user) {			
+		console.log("Finished search!");
+		console.log(user);
+		if(err) {
+			console.log(err);
+			return done(err);
+		} else if (!user) {
+			return done(null, false); 
+		} else if (user.password != password) {
+			return done(null, false);
+		}
+		console.log("Success!");
+		return done(null, user);
+	});
+  }
 ));
 
 passport.serializeUser(function(user, cb) {

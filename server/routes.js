@@ -35,20 +35,20 @@ module.exports = function(app, models, multer, passport) {
 	})
 
 	// EDIT ROUTES
-	app.post('/updateNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/updateNewspaper', passport.authenticate('basic', { session: false }),
 		function(req,res) {
 		models.NewspaperModel.findById(req.body._id, function(err, element) {		
 			updateElement(element, err, req.body, res);
 		})
 	});
 
-	app.post('/login', passport.authenticate('local', { failureRedirect: '/authfail' }), function(req, res) {
+	app.post('/login', passport.authenticate('basic', { session: false }), function(req, res) {
 		console.log(req.body);
 		console.log("login swag!");
 		res.json({loginstate: true});
 	});
 
-	app.post('/updateAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/updateAward', passport.authenticate('basic', { session: false }),
 		function(req,res) {
 		console.log(req.body);
 		console.log(req.body.id);
@@ -59,7 +59,7 @@ module.exports = function(app, models, multer, passport) {
 		})
 	});
 
-	app.post('/updateContact', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/updateContact', passport.authenticate('basic', { session: false }),
 		function(req,res) {
 		models.ContactModel.findById(req.body.id, function(err, element) {		
 			if (err) {
@@ -71,40 +71,41 @@ module.exports = function(app, models, multer, passport) {
 	});
 
 	// Insert Routes
-	app.post('/insertAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/insertAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
+			console.log("Inserting new award!");
 			insertElement(models.AwardsModel, req.body, res)
 	});
 
-	app.post('/insertNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/insertNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			insertElement(models.NewspaperModel, req.body, res)
 	});
 
 	// Delete Routes
-	app.post('/deleteAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/deleteAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			deleteElement(models.AwardsModel, req.body.id, res)
 	});
 
-	app.post('/deleteNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/deleteNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			deleteElement(models.NewspaperModel, req.body.id, res)
 	});
 
 	// Upload Routes
-	app.post('/uploadAward', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/uploadAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			saveFile("award", req, res, multer);
 	});
 
-	app.post('/uploadNewspaper', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/uploadNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			console.log("Hit backend!");
 		saveFile("newspaper", req, res, multer);
 	});
 
-	app.post('/uploadArt', passport.authenticate('local', { failureRedirect: '/authfail' }),
+	app.post('/uploadArt', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			saveFile("artwork", req, res, multer);
 	});

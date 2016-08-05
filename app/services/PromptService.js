@@ -35,24 +35,6 @@ app.service('PromptService', function($mdPanel) {
 	this.selectedId = 0; 
 	this.image = "";
 
-	function shallowCopy( original ) {
-	    // First create an empty object with
-	    // same prototype of our original source
-	    var clone = Object.create( Object.getPrototypeOf( original ) ) ;
-
-	    var i , keys = Object.getOwnPropertyNames( original ) ;
-
-	    for ( i = 0 ; i < keys.length ; i ++ )
-	    {
-	        // copy each property into the clone
-	        Object.defineProperty( clone , keys[ i ] ,
-	            Object.getOwnPropertyDescriptor( original , keys[ i ] )
-	        ) ;
-	    }
-
-	    return clone;
-	}
-
 	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, 
 		promptData, selectedId, image) {
 		this.config = {
@@ -176,6 +158,23 @@ app.service('PromptService', function($mdPanel) {
 			x: xPos,
 			y: yPos
 		};
+	}
+	
+	function shallowCopy( original ) {
+	    // First create an empty object with
+	    // same prototype of our original source
+	    var clone = Object.create( Object.getPrototypeOf( original ) ) ;
+	    var i , keys = Object.getOwnPropertyNames( original ) ;
+
+	    for ( i = 0 ; i < keys.length ; i ++ )
+	    {
+	        // copy each property into the clone
+	        Object.defineProperty( clone , keys[ i ] ,
+	            Object.getOwnPropertyDescriptor( original , keys[ i ] )
+	        ) ;
+	    }
+
+	    return clone;
 	}
 
 });
