@@ -11,7 +11,9 @@ angular.module('IgorNasibyan').directive("anchorLink", function($anchorScroll, $
 
 			scope.login = function() {
 				if(!$rootScope.loggedIn) {
-					PromptService.setPromptConfigMinimal('LoginController', 'login-form.html');
+					var result = document.getElementById("mainfab");
+					var loginbutton = angular.element(result)[0];
+					PromptService.setPromptConfigDisplay('LoginController', 'login-form.html', null, loginbutton);
 					PromptService.displayPrompt();
 				} else {
 					if(confirm("Are you sure you'd like to logout?"))

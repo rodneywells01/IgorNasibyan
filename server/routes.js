@@ -25,7 +25,7 @@ module.exports = function(app, models, multer, passport) {
 	});
 
 	app.get('/artcollection', function(req,res) {
-		var fileNames = fs.readdirSync('../app/images/artwork');
+		var fileNames = fs.readdirSync('../app/images/art');
 		res.json(fileNames);
 	});
 
@@ -85,12 +85,19 @@ module.exports = function(app, models, multer, passport) {
 	// Delete Routes
 	app.post('/deleteAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
+			deleteFile("award", req.body.filename, req, res);
 			deleteElement(models.AwardsModel, req.body.id, res)
 	});
 
 	app.post('/deleteNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
+			deleteFile("newspaper", req.body.filename, req, res);			
 			deleteElement(models.NewspaperModel, req.body.id, res)
+	});
+
+	app.post('/deleteArt', passport.authenticate('basic', { session: false }),
+		function(req, res) {
+			deleteFile("art", req.body.filename, req, res);			
 	});
 
 	// Upload Routes
@@ -101,8 +108,7 @@ module.exports = function(app, models, multer, passport) {
 
 	app.post('/uploadNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			console.log("Hit backend!");
-		saveFile("newspaper", req, res, multer);
+			saveFile("newspaper", req, res, multer);
 	});
 
 	app.post('/uploadArt', passport.authenticate('basic', { session: false }),
@@ -126,6 +132,17 @@ function saveFile(area, req, res, multer) {
          res.json({error_code:0,err_desc:null});
     });
 } 
+
+function deleteFile(area, filename, req, res) {
+	fs.unlink('app/controllers/' + area + "/" + filename, function(data, err){
+		console.log(err); 
+		if (err) {
+			res.json({deleted: false});
+		} else {
+			res.json({deleted: true});
+		}
+	}); 	
+}
 
 function configureStorage(multer, location) {
 	return multer.diskStorage({

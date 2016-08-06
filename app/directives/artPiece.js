@@ -4,9 +4,9 @@ angular.module('IgorNasibyan').directive("artPiece", function(PromptService) {
 		scope: { imagename : '='},
 		restrict: 'E', 
 		link: function(scope, elem, attr) { 
-			scope.imagePath = "app/images/artwork/" + scope.imagename;
+			scope.imagePath = "app/images/art/" + scope.imagename;
 			scope.displayFullSize = function() {
-				PromptService.setPromptConfigDisplay('artDisplay.html', scope.imagePath, elem[0]);
+				PromptService.setPromptConfigDisplay('PromptController', 'artDisplay.html', scope.imagePath, elem[0]);
 				PromptService.displayPrompt();
 			}
 		}

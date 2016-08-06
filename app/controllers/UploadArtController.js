@@ -16,6 +16,10 @@ app.controller('UploadArtController', function($scope, PromptService, NodeConnec
 		});		
 	}
 
+	function deleteArtwork() {
+		// NodeConnection.deleteArtwork()
+	}
+
 	// Close dialog
 	$scope.closeDialog = function(){
 	  	mdPanelRef && mdPanelRef.close();

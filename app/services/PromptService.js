@@ -65,27 +65,9 @@ app.service('PromptService', function($mdPanel) {
 		delete this.promptData.storageId;
 	};
 
-	this.setPromptConfigDisplay = function(templateUrl, image, elem) {
+	this.setPromptConfigDisplay = function(controller, templateUrl, image, elem) {
 		var animation = animateElementOrigin(elem);
 
-		this.config = {
-			animation: animation,
-			attachTo: angular.element(document.body), 
-			controller: 'PromptController', 
-			templateUrl: 'app/promptviews/' + templateUrl, 
-			panelClass: '', 
-			position: position,
-			trapFocus: true, 
-			zIndex: 150, 
-			clickOutsideToClose: true, 
-			escapeToClose: true, 
-			hasBackdrop: true
-		};
-
-		this.image = image;
-	}
-
-	this.setPromptConfigMinimal = function(controller, templateUrl) {
 		this.config = {
 			animation: animation,
 			attachTo: angular.element(document.body), 
@@ -99,7 +81,9 @@ app.service('PromptService', function($mdPanel) {
 			escapeToClose: true, 
 			hasBackdrop: true
 		};
-	}
+
+		this.image = image;
+	};
 
 	this.updateOriginal = function(newData) {
 		this.promptDataOriginal[this.selectedId] = newData;
@@ -129,7 +113,9 @@ app.service('PromptService', function($mdPanel) {
 		var widthmodifier = window.innerWidth / 2; 
 		var heightmodifier = window.innerHeight / 2;
 		var ypos = elemPosition.y - heightmodifier;
-		var xpos = elemPosition.x - widthmodifier;		
+		var xpos = elemPosition.x - widthmodifier;
+		console.log(xpos);
+		console.log(ypos);		
 		animation.openFrom({top: ypos, left: xpos});
 	  	animation.closeTo({top: ypos, left: xpos});
 		animation.withAnimation($mdPanel.animation.SCALE); 
@@ -178,3 +164,11 @@ app.service('PromptService', function($mdPanel) {
 	}
 
 });
+
+/*
+Controller
+Template URL 
+Image (optional) 
+Elem?
+
+*/

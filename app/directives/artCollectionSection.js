@@ -4,12 +4,12 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 		restrict: 'E', 		
 		link: function($scope, elem, attr) {
 			$scope.artFiles = []; 
+			$scope.expandedClass = false;
+			$scope.showArt = false;
+
 			NodeConnection.getImageList().then(function(data) {
 				$scope.artFiles = data;
 			});
-
-			$scope.expandedClass = false;
-			$scope.showArt = false;
 
 			function fetchArtwork() {
 				/* Get all of the latest artwork from Igor Nasibyan. */
@@ -19,11 +19,7 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 				});
 			}
 
-			$scope.artFiles = [];
 			fetchArtwork(); 
-
-
-
 			$scope.displayArt = function() {
 				/* Compile and display art-piece elements. */
 				$scope.expandedClass = !$scope.expandedClass;
@@ -31,7 +27,7 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 				var imglist = ""; 
 				var i = 0; 
 				for (i = 0; i < $scope.artFiles.length; i++) {
-					var newimg = "<img class='art-piece' src='app/images/artwork/" + $scope.artFiles[i] + "'>";
+					var newimg = "<img class='art-piece' src='app/images/art/" + $scope.artFiles[i] + "'>";
 					imglist += newimg;
 				}
 
