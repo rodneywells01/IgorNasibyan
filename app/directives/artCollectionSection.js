@@ -1,8 +1,9 @@
-angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeConnection, $timeout) {
+angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeConnection, $timeout, PromptService) {
 	return {
 		templateUrl: 'app/views/art-collection-section.html',
 		restrict: 'E', 		
-		link: function($scope, elem, attr) { 
+		link: function($scope, elem, attr) {
+			$scope.artFiles = []; 
 			NodeConnection.getImageList().then(function(data) {
 				$scope.artFiles = data;
 			});
@@ -13,6 +14,7 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 			function fetchArtwork() {
 				/* Get all of the latest artwork from Igor Nasibyan. */
 				NodeConnection.getImageList().then(function(data) {
+					console.log(data);
 					$scope.artFiles = data;
 				});
 			}
@@ -42,6 +44,12 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 
 				// container.innerHTML = imglist;
 			};
+
+			$scope.addArtwork = function(){
+				var newArt = { storageId: $scope.awards.length};
+				PromptService.setPromptConfigMinimal('UploadArtController', 'uploadFile.html');
+				PromptService.displayPrompt();
+			}
 		}
 	};
 });

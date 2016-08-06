@@ -10,7 +10,7 @@ app.controller('UploadArtController', function($scope, PromptService, NodeConnec
 
 	// INSERT
 	function dbElemInsert() {
-		NodeConnection.uploadImage('Award', $scope.file).then(function(data) {
+		NodeConnection.uploadImage('Art', $scope.file).then(function(data) {
 			console.log("Data upload success!");
 			$scope.closeDialog();
 		});		
