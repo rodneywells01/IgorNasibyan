@@ -34,12 +34,12 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 			$scope.addArtwork = function(elem){
 				console.log(elem);
 				var newArt = { storageId: $scope.awards.length};
-				PromptService.setPromptConfigDisplay('ArtController', 'uploadFile.html', null, elem);
+				PromptService.setPromptConfigDisplay('ArtController', 'uploadFile.html', null, elem, $scope.artFiles);
 				PromptService.displayPrompt();
 			}
 
 			$scope.editArtwork = function(imageName, element){
-				PromptService.setPromptConfigDisplay('ArtController', 'artEdit.html', imageName, element.srcElement)
+				PromptService.setPromptConfigDisplay('ArtController', 'artEdit.html', imageName, element.srcElement, $scope.artFiles);
 				PromptService.displayPrompt();
 			}
 		}

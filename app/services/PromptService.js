@@ -65,7 +65,7 @@ app.service('PromptService', function($mdPanel) {
 		delete this.promptData.storageId;
 	};
 
-	this.setPromptConfigDisplay = function(controller, templateUrl, image, elem) {
+	this.setPromptConfigDisplay = function(controller, templateUrl, image, elem, collection) {
 		var animation = animateElementOrigin(elem);
 
 		this.config = {
@@ -81,7 +81,7 @@ app.service('PromptService', function($mdPanel) {
 			escapeToClose: true, 
 			hasBackdrop: true
 		};
-
+		this.promptDataOriginal = collection;
 		this.image = image;
 	};
 

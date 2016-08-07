@@ -17,6 +17,8 @@ app.controller('ArtController', function($scope, PromptService, NodeConnection, 
 		console.log($scope.file);
 		NodeConnection.uploadImage('Art', $scope.file).then(function(data) {
 			console.log("Data upload success!");
+			console.log($scope.file); // TODO ADD FILE		
+			PromptService.promptDataOriginal.push($scope.file.name);
 			$scope.closeDialog();
 		});		
 	}
@@ -31,11 +33,17 @@ app.controller('ArtController', function($scope, PromptService, NodeConnection, 
 				} else {
 					console.log("Deletion failure!");
 				}
-				// TODO recompile view.
+				var i = 0;
+				for (i = 0; i < PromptService.promptDataOriginal.length; i++) {
+					if (PromptService.promptDataOriginal[i] == PromptService.image) {
+						PromptService.promptDataOriginal.splice(i, 1);
+						break;
+					}
+				}
 				$scope.closeDialog();
 			});
 		}
-	}
+	};
 
 	// Close dialog
 	$scope.closeDialog = function(){
