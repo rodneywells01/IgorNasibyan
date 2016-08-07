@@ -36,7 +36,7 @@ app.service('PromptService', function($mdPanel) {
 	this.image = "";
 
 	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, 
-		promptData, selectedId, image) {
+		promptData, selectedId) {
 		this.config = {
 			animation: animation,
 			attachTo: angular.element(document.body), 
@@ -50,6 +50,10 @@ app.service('PromptService', function($mdPanel) {
 			escapeToClose: true, 
 			hasBackdrop: true
 		};
+		
+		if(selectedId != null) {
+			this.image = promptData[selectedId].fileName;	
+		}
 
 		this.servicebackend = servicebackend;
 		this.backendAdd = backendfunctionality;
@@ -107,6 +111,14 @@ app.service('PromptService', function($mdPanel) {
 		}
 	};
 
+	this.parseFileName = function(filePath) {
+		var index = filePath.lastIndexOf("/");
+		if (index == -1) {
+			index = 0;
+		}
+		return filePath.slice(index, filePath.length - index);
+	}
+
 	function animateElementOrigin(elem) {
 		var animation = $mdPanel.newPanelAnimation(); 		
 		var elemPosition = getPosition(elem);
@@ -162,7 +174,6 @@ app.service('PromptService', function($mdPanel) {
 
 	    return clone;
 	}
-
 });
 
 /*

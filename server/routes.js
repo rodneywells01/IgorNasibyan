@@ -85,21 +85,27 @@ module.exports = function(app, models, multer, passport) {
 	// Delete Routes
 	app.post('/deleteAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			deleteFile("award", req.body.fileName, req, res);
-			deleteElement(models.AwardsModel, req.body.id, res)
+			var response = deleteFile("award", req.body.fileName, req, res, false);
+			if(response.deleted) {
+				deleteElement(models.AwardsModel, req.body.id, res)	
+			} else {
+				res.json(response);
+			}			
 	});
 
 	app.post('/deleteNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			deleteFile("newspaper", req.body.fileName, req, res);			
-			deleteElement(models.NewspaperModel, req.body.id, res)
+			var response = deleteFile("newspaper", req.body.fileName, req, res, false);			
+			if(response.deleted) {
+				deleteElement(models.NewspaperModel, req.body.id, res)	
+			} else {
+				res.json(response);
+			}			
 	});
 
 	app.post('/deleteArt', passport.authenticate('basic', { session: false }),
-		function(req, res) {
-			console.log("Deleting art");
-			console.log(req.body);
-			deleteFile("art", req.body.fileName, req, res);			
+		function(req, res) {			
+			deleteFile("art", req.body.fileName, req, res, true);			
 	});
 
 	// Upload Routes
@@ -131,19 +137,23 @@ function saveFile(area, req, res, multer) {
              res.json({error_code:1,err_desc:err});
              return;
         }
-         res.json({error_code:0,err_desc:null});
+        res.json({error_code:0,err_desc:null});
     });
 } 
 
-function deleteFile(area, filename, req, res) {
-	fs.unlink('../app/images/' + area + "/" + filename, function(err){
-		console.log(err); 
-		if (err) {
-			res.json({deleted: false});
-		} else {
-			res.json({deleted: true});
-		}
-	}); 	
+function deleteFile(area, filename, req, res, resolve) {
+	var response = {};
+	try {
+		fs.unlinkSync('../app/images/' + area + "/" + filename);				
+		response.deleted = true;
+	} catch (e){
+		response.deleted = false;
+	}
+	if(resolve){
+		res.json(response);
+	} else {
+		return response;
+	}	
 }
 
 function configureStorage(multer, location) {
@@ -176,6 +186,7 @@ function updateElement(element, err, data, res) {
 function deleteElement(Model, id, res) {
 	Model.find({ _id: id}).remove(function(err, data) {
 		if (err) { res.json(err) }
+		console.log(data);
 		res.json(data);
 	});
 }

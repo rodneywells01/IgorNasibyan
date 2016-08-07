@@ -56,10 +56,8 @@ app.service('NodeConnection', function($http, $q, Upload, $rootScope) {
 	function httpGetReq(req) {
 		var deferred = $q.defer();        
         $http(req).success(function (response) {
-        	console.log("SUCCESS");
             deferred.resolve(response);
         }).error(function (reason) {
-        	console.log("FAILURE");
             deferred.reject(reason);
         });
 

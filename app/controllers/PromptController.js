@@ -16,7 +16,6 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	
 	$scope.setFile = function() {		
 		document.getElementById('fileUpload').click();        
-        // $scope.fileInput.click();
 	};
 
 	// DEBUG
@@ -47,7 +46,7 @@ app.controller('PromptController', function($scope, PromptService, NodeConnectio
 	// DELETE 
 	$scope.deleteElement = function() {		
 		if(confirm("Are you sure you want to delete this?")) {
-			NodeConnection.deleteDBValue($scope.servicebackend, PromptService.promptData._id).then(function(data) {
+			NodeConnection.deleteDBValue($scope.servicebackend, PromptService.promptData._id, $scope.image).then(function(data) {
 				$scope.closeDialog();				
 				PromptService.removeElement(PromptService.selectedId);
 			});
