@@ -1,6 +1,6 @@
 <div class="artwork-container">
 	<div class="artwork-inner-container">
-		<edit-button edit-fn="edit()"></edit-button>
+		<edit-button ng-click="editFn({imageName: imagename, element: $event})"></edit-button>
 		<img class="artwork" ng-src="{{ imagePath }}" ng-click="displayFullSize()";>
 	</div>
 </div>

@@ -9,7 +9,11 @@ angular.module('IgorNasibyan').directive("addCard", function($rootScope) {
 			$rootScope.loggedIn;
 			scope.imagePath = attr.pic; 
 			scope.title = attr.title; 
-			scope.description = attr.description;		
+			scope.description = attr.description;	
+
+			scope.addEvent = function(event) {
+				scope.addFn(event.srcElement);
+			};	
 		}
 	};
 });

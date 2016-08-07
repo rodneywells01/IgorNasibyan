@@ -85,19 +85,21 @@ module.exports = function(app, models, multer, passport) {
 	// Delete Routes
 	app.post('/deleteAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			deleteFile("award", req.body.filename, req, res);
+			deleteFile("award", req.body.fileName, req, res);
 			deleteElement(models.AwardsModel, req.body.id, res)
 	});
 
 	app.post('/deleteNewspaper', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			deleteFile("newspaper", req.body.filename, req, res);			
+			deleteFile("newspaper", req.body.fileName, req, res);			
 			deleteElement(models.NewspaperModel, req.body.id, res)
 	});
 
 	app.post('/deleteArt', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			deleteFile("art", req.body.filename, req, res);			
+			console.log("Deleting art");
+			console.log(req.body);
+			deleteFile("art", req.body.fileName, req, res);			
 	});
 
 	// Upload Routes
@@ -113,7 +115,7 @@ module.exports = function(app, models, multer, passport) {
 
 	app.post('/uploadArt', passport.authenticate('basic', { session: false }),
 		function(req, res) {
-			saveFile("artwork", req, res, multer);
+			saveFile("art", req, res, multer);
 	});
 
 	return app;
@@ -134,7 +136,7 @@ function saveFile(area, req, res, multer) {
 } 
 
 function deleteFile(area, filename, req, res) {
-	fs.unlink('app/controllers/' + area + "/" + filename, function(data, err){
+	fs.unlink('../app/images/' + area + "/" + filename, function(err){
 		console.log(err); 
 		if (err) {
 			res.json({deleted: false});

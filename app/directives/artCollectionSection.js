@@ -23,27 +23,23 @@ angular.module('IgorNasibyan').directive("artCollectionSection", function(NodeCo
 			$scope.displayArt = function() {
 				/* Compile and display art-piece elements. */
 				$scope.expandedClass = !$scope.expandedClass;
-				var container = document.getElementById('artcollection'); 
-				var imglist = ""; 
-				var i = 0; 
-				for (i = 0; i < $scope.artFiles.length; i++) {
-					var newimg = "<img class='art-piece' src='app/images/art/" + $scope.artFiles[i] + "'>";
-					imglist += newimg;
-				}
 
 				if (!$scope.showArt) {
 					$timeout(function() {$scope.showArt = true}, 350);	
 				} else {
 					$scope.showArt = false;
-				}
-				
-
-				// container.innerHTML = imglist;
+				}							
 			};
 
-			$scope.addArtwork = function(){
+			$scope.addArtwork = function(elem){
+				console.log(elem);
 				var newArt = { storageId: $scope.awards.length};
-				PromptService.setPromptConfigMinimal('UploadArtController', 'uploadFile.html');
+				PromptService.setPromptConfigDisplay('ArtController', 'uploadFile.html', null, elem);
+				PromptService.displayPrompt();
+			}
+
+			$scope.editArtwork = function(imageName, element){
+				PromptService.setPromptConfigDisplay('ArtController', 'artEdit.html', imageName, element.srcElement)
 				PromptService.displayPrompt();
 			}
 		}

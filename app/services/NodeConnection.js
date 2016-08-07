@@ -34,14 +34,12 @@ app.service('NodeConnection', function($http, $q, Upload, $rootScope) {
 		return httpPost(url, data);
 	};
 
-	this.deleteDBValue = function(area, id) {
+	this.deleteDBValue = function(area, id, fileName) {
 		var url = "/delete" + area; 
-		console.log(id);
-		return httpPost(url, { 'id': id });
+		return httpPost(url, { 'id': id, 'fileName': fileName });
 	};
 
 	this.uploadImage = function(area, file) {
-		console.log(area);
 		var url = "/upload" + area;	
 		return httpPostFile(url, file);
 	};

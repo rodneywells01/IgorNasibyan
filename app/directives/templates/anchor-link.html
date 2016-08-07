@@ -1,7 +1,6 @@
 <md-fab-speed-dial id="mainfab" md-open="isOpen" md-direction="down" class="md-scale">
 	<md-fab-trigger>
-	  	<md-button  class="md-fab md-primary" aria-label="menu" >	
-	    		<md-icon md-font-set="material-icons">menu</md-icon>
+	  	<md-button  class="md-fab md-primary" aria-label="menu" >	<md-icon md-font-set="material-icons">menu</md-icon>
 	  	</md-button>
 	</md-fab-trigger>
 	<md-fab-actions>		  	
@@ -24,7 +23,11 @@
 	    	<md-icon md-font-set="material-icons">email</md-icon>
 	  	</md-button>
 	  	<md-button id="login-button" ng-click="login()" aria-label="Google Hangout" class="md-fab md-raised md-mini">
-	    	<md-icon md-font-set="material-icons">email</md-icon>
+	  		<md-tooltip md-direction="left">
+	          <span ng-if="!$root.loggedIn">Sign In</span>
+	          <span ng-if="$root.loggedIn">Logout</span>
+	        </md-tooltip>
+	    	<md-icon md-font-set="material-icons">account_circle</md-icon>
 	  	</md-button>
 	</md-fab-actions>
 </md-fab-speed-dial>	
