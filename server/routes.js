@@ -86,11 +86,13 @@ module.exports = function(app, models, multer, passport) {
 	app.post('/deleteAward', passport.authenticate('basic', { session: false }),
 		function(req, res) {
 			var response = deleteFile("award", req.body.fileName, req, res, false);
-			if(response.deleted) {
-				deleteElement(models.AwardsModel, req.body.id, res)	
-			} else {
-				res.json(response);
-			}			
+			// if(response.deleted) {
+			// 	deleteElement(models.AwardsModel, req.body.id, res)	
+			// } else {
+			// 	res.json(response);
+			// }	
+			deleteElement(models.AwardsModel, req.body.id, res)	
+		
 	});
 
 	app.post('/deleteNewspaper', passport.authenticate('basic', { session: false }),

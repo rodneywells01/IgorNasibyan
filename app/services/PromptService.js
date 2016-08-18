@@ -24,7 +24,12 @@ app.service('PromptService', function($mdPanel) {
 
 	// Present the configured prompt to the user. 
 	this.displayPrompt = function() {	
-		$mdPanel.open(this.config); 
+		var imageUrl = this.image;
+		$mdPanel.open(this.config)
+			.finally(function(){
+				// Lesson learned, this as a var is unreliable at times pending scope transitions. 
+				configureFullScreenImage(imageUrl);
+			}); 
 	};
 
 	// Hold critical prompt information. 
@@ -34,6 +39,7 @@ app.service('PromptService', function($mdPanel) {
 	this.promptDataOriginal = {};
 	this.selectedId = 0; 
 	this.image = "";
+	this.fullScreenImage = false;
 
 	this.setPromptConfig = function(templateUrl, servicebackend, backendfunctionality, 
 		promptData, selectedId) {
@@ -64,6 +70,7 @@ app.service('PromptService', function($mdPanel) {
 		}		
 		this.promptDataOriginal = promptData;
 		this.selectedId = selectedId;
+		this.fullScreenImage = false;
 
 		// Remove key to make promptData DataModel adherant, 
 		delete this.promptData.storageId;
@@ -87,6 +94,30 @@ app.service('PromptService', function($mdPanel) {
 		};
 		this.promptDataOriginal = collection;
 		this.image = image;
+		this.fullScreenImage = false;
+	};
+
+	this.setPromptConfigDisplayImage = function(controller, templateUrl, image, elem, collection) {
+		var animation = animateElementOrigin(elem);
+
+		this.config = {
+			animation: animation,
+			attachTo: angular.element(document.body), 
+			controller: controller, 
+			templateUrl: 'app/promptviews/' + templateUrl, 
+			panelClass: 'prompt-art-display', 
+			position: position,
+			trapFocus: true, 
+			zIndex: 150, 
+			clickOutsideToClose: true, 
+			escapeToClose: true, 
+			hasBackdrop: true
+		};
+		this.promptDataOriginal = collection;
+		this.image = image;
+		console.log(image);
+		console.log(this.image);
+		this.fullScreenImage = true;
 	};
 
 	this.updateOriginal = function(newData) {
@@ -112,11 +143,30 @@ app.service('PromptService', function($mdPanel) {
 	};
 
 	this.parseFileName = function(filePath) {
-		var index = filePath.lastIndexOf("/");
+		var index = filePath.lastInedxOf("/");
 		if (index == -1) {
 			index = 0;
 		}
 		return filePath.slice(index, filePath.length - index);
+	}
+
+	function configureFullScreenImage(imageUrl) {
+		var imageDisplay = document.getElementById('full-art-image');
+		imageDisplay.style.backgroundImage = "url('" + imageUrl + "')";
+		console.log(imageDisplay);
+
+		// Find image true dimensions. 
+		var theImage = new Image();
+		theImage.src = imageUrl;
+		console.log(theImage.width);
+		console.log(theImage.height);
+
+		var dimensionRatio = theImage.height / theImage.width * 100;; 
+
+
+		imageDisplay.style.paddingTop = dimensionRatio + "%";
+		var windowWidth = window.innerWidth;
+		var windowHeight = window.innerHeight;
 	}
 
 	function animateElementOrigin(elem) {

@@ -9,7 +9,7 @@ angular.module('IgorNasibyan').directive("artPiece", function(PromptService) {
 		link: function(scope, elem, attr) { 
 			scope.imagePath = "app/images/art/" + scope.imagename;
 			scope.displayFullSize = function() {
-				PromptService.setPromptConfigDisplay('PromptController', 'artDisplay.html', scope.imagePath, elem[0]);
+				PromptService.setPromptConfigDisplayImage('ArtController', 'artDisplay.html', scope.imagePath, elem[0]);
 				PromptService.displayPrompt();
 			}
 		}
