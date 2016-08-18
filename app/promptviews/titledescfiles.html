@@ -1,7 +1,7 @@
 <md-card class="prompt-card">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<div ng-show="!backendAdd">Edit {{ servicebackend }}</div>
+			<div ng-show="!backendAdd">Edit {{ servicebackend }} - {{ promptData.title }}</div>
 			<div ng-show="backendAdd">Add {{ servicebackend }}</div>
 		</div>
 	</md-toolbar>	
@@ -18,7 +18,7 @@
       	<md-input-container class="align-center" flex>
       		<div id="prompt-button-container" layout="column"> 
       			<input id="fileUpload" type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" accept="image/*" hide>
-		      	<md-button ng-click="setFile()" class="md-raised">Upload Image</md-button>	
+		      	<md-button ng-if="backendAdd" ng-click="setFile()" class="md-raised">Upload Image</md-button>	
 		      	<!-- <md-button ng-click="displayFileInfo()" class="md-raised">Display Info</md-button>	 -->	
 		      	<md-button ng-if="!backendAdd" ng-click="deleteElement()" class="md-raised md-warn">DeleteItem</md-button>
 		      	<md-button ng-click="makeBackendRequest()" class="md-raised">Save Changes</md-button>

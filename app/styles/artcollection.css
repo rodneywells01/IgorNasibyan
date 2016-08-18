@@ -11,7 +11,8 @@
 }
 
 .expanded {
-	min-height: 1200px !important;
+	/*min-height: 1200px !important;*/
+	min-height: 98px;
 	z-index: 20;
 	padding: 0;	
 	display: block !important;

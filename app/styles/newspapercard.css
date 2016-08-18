@@ -12,6 +12,8 @@ newspaper {
 	text-justify: inter-word;
 	padding: 50px;
 	white-space: pre-wrap;
+	max-height: 300px;
+	overflow-y: auto;
 }
 
 #newspaperwrapper {

@@ -17,13 +17,13 @@ angular.module('IgorNasibyan').directive("newspapersSection", function(NodeConne
 
 			$scope.add = function() {
 				var newNewspaper = { storageId: $scope.newspapers.length - 1};
-				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', true, $scope.newspapers, newNewspaper, null);
+				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', true, $scope.newspapers, null);
 				PromptService.displayPrompt();
 			}
 
 			$scope.edit = function(newspaper) {
 				// Display prompt with info. 
-				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', false, $scope.newspapers, newspaper.storageId, null);
+				PromptService.setPromptConfig('titledescfiles.html', 'Newspaper', false, $scope.newspapers, newspaper.storageId);
 				PromptService.displayPrompt();
 			};
 

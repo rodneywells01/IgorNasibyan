@@ -5,7 +5,6 @@ app.service('PromptService', function($mdPanel) {
 			.center(); 
 	var animation = $mdPanel.newPanelAnimation(); 
 	animation.openFrom({top:0, left:0}); 
-	// animation.closeTo({top: 50%, left: 100%}); 
   	animation.closeTo({top:0, left:0});
 	animation.withAnimation($mdPanel.animation.SCALE); 
 	this.config = {
@@ -175,9 +174,7 @@ app.service('PromptService', function($mdPanel) {
 		var widthmodifier = window.innerWidth / 2; 
 		var heightmodifier = window.innerHeight / 2;
 		var ypos = elemPosition.y - heightmodifier;
-		var xpos = elemPosition.x - widthmodifier;
-		console.log(xpos);
-		console.log(ypos);		
+		var xpos = elemPosition.x - widthmodifier;	
 		animation.openFrom({top: ypos, left: xpos});
 	  	animation.closeTo({top: ypos, left: xpos});
 		animation.withAnimation($mdPanel.animation.SCALE); 
@@ -221,15 +218,6 @@ app.service('PromptService', function($mdPanel) {
 	            Object.getOwnPropertyDescriptor( original , keys[ i ] )
 	        ) ;
 	    }
-
 	    return clone;
 	}
 });
-
-/*
-Controller
-Template URL 
-Image (optional) 
-Elem?
-
-*/
