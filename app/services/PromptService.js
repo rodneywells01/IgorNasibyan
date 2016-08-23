@@ -22,7 +22,7 @@ app.service('PromptService', function($mdPanel) {
 	};
 
 	// Present the configured prompt to the user. 
-	this.displayPrompt = function() {	
+	this.displayPrompt = function() {
 		var imageUrl = this.image;
 		$mdPanel.open(this.config)
 			.finally(function(){
